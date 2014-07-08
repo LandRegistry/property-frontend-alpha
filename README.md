@@ -1,4 +1,4 @@
-Land Registry Search Front End
+Land Registry Property Front End
 ===============
 
-[![Build Status](https://travis-ci.org/LandRegistry/search-frontend.svg)](https://travis-ci.org/LandRegistry/search-frontend)
+[![Build Status](https://travis-ci.org/LandRegistry/property.svg?branch=master)](https://travis-ci.org/LandRegistry/property)
