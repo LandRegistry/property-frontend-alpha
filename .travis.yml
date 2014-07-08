@@ -7,6 +7,6 @@ deploy:
   provider: heroku
   api_key:
     secure: pJ6WhwCXM7lxLrlzlJs55WFOk3wpMvvgN12H8HI0QBfrlhwbbO7ZPqVZSFxRI92ki2eHmg7eVbGorz4l9AJDgvQvabDCAIPINESh4jpBLTcD2MnrkXeQvRxYdcrrMCuSjF3tN2rsJtGIK06d5rLUTODg/4kKB2A3zf/B4mChv6U=
-  app: search-frontend
+  app: guarded-reaches-8608
   on:
     repo: LandRegistry/search-frontend
