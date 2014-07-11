@@ -4,7 +4,7 @@ import requests
 
 @app.route('/')
 def index():
-    return "Nothing to see here!"
+     return render_template('index.html')
 
 @app.route('/property/<title_number>')
 def property(title_number):
