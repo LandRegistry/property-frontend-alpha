@@ -1,11 +1,7 @@
 #!/bin/bash
 
 export SETTINGS='config.DevConfig'
-export TITLE_API_URL='http://localhost:8006'
-export PORT='8005'
+export TITLE_API_URL='http://localhost:8003'
+export PORT='8002'
 
-if [[ $1 == "dev" ]]; then
-    python run_dev.py
-else
-    foreman start
-fi
+python run_dev.py
