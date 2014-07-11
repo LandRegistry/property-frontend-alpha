@@ -1,1 +1,1 @@
-foreman start -p 8005
+python run_dev.py
