@@ -1,0 +1,248 @@
+@-ms-viewport {
+  width: device-width;
+}
+@-o-viewport {
+  width: device-width;
+}
+@font-face {
+  font-family: GDS-Logo;
+  src: local("HelveticaNeue"), local("Helvetica Neue"), local("Arial"), local("Helvetica");
+}
+@-ms-viewport {
+  width: device-width;
+}
+@-o-viewport {
+  width: device-width;
+}
+@-ms-viewport {
+  width: device-width;
+}
+@-o-viewport {
+  width: device-width;
+}
+/* line 46, ../govuk_toolkit/stylesheets/_shims.scss */
+#content:after, .grid-wrapper:after, .grid-divider:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+@-ms-viewport {
+  width: device-width;
+}
+@-o-viewport {
+  width: device-width;
+}
+/* line 46, ../govuk_toolkit/stylesheets/_shims.scss */
+#content:after, .grid-wrapper:after, .grid-divider:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+@font-face {
+  font-family: GDS-Logo;
+  src: local("HelveticaNeue"), local("Helvetica Neue"), local("Arial"), local("Helvetica");
+}
+@-ms-viewport {
+  width: device-width;
+}
+@-o-viewport {
+  width: device-width;
+}
+@font-face {
+  font-family: GDS-Logo;
+  src: local("HelveticaNeue"), local("Helvetica Neue"), local("Arial"), local("Helvetica");
+}
+@-ms-viewport {
+  width: device-width;
+}
+@-o-viewport {
+  width: device-width;
+}
+@-ms-viewport {
+  width: device-width;
+}
+@-o-viewport {
+  width: device-width;
+}
+/* line 46, ../govuk_toolkit/stylesheets/_shims.scss */
+#content:after, .grid-wrapper:after, .grid-divider:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+@-ms-viewport {
+  width: device-width;
+}
+@-o-viewport {
+  width: device-width;
+}
+@-ms-viewport {
+  width: device-width;
+}
+@-o-viewport {
+  width: device-width;
+}
+/* line 46, ../govuk_toolkit/stylesheets/_shims.scss */
+#content:after, .grid-wrapper:after, .grid-divider:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+@-ms-viewport {
+  width: device-width;
+}
+@-o-viewport {
+  width: device-width;
+}
+/* line 46, ../govuk_toolkit/stylesheets/_shims.scss */
+#content:after, .grid-wrapper:after, .grid-divider:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+@-ms-viewport {
+  width: device-width;
+}
+@-o-viewport {
+  width: device-width;
+}
+/* line 1, ../landregistry_elements/_normalise.scss */
+main {
+  display: block;
+}
+
+/* line 6, ../landregistry_elements/_layout.scss */
+#wrapper {
+  text-align: center;
+  padding-bottom: 30px;
+}
+@media (min-width: 769px) {
+  /* line 6, ../landregistry_elements/_layout.scss */
+  #wrapper {
+    padding-bottom: 90px;
+  }
+}
+
+/* line 16, ../landregistry_elements/_layout.scss */
+#content {
+  text-align: left;
+  margin: 0 auto;
+  width: auto;
+  max-width: 1020px;
+}
+
+/* line 22, ../landregistry_elements/_layout.scss */
+.inner-block {
+  margin-left: 15px;
+  margin-right: 15px;
+}
+@media (min-width: 641px) {
+  /* line 22, ../landregistry_elements/_layout.scss */
+  .inner-block {
+    margin-left: 30px;
+    margin-right: 30px;
+  }
+}
+
+/* line 28, ../landregistry_elements/_layout.scss */
+#global-cookie-message .inner-block,
+#global-header-bar .inner-block {
+  margin: 0;
+}
+
+@media (min-width: 641px) {
+  /* line 54, ../landregistry_elements/_layout.scss */
+  .grid-wrapper {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+}
+
+/* line 63, ../landregistry_elements/_layout.scss */
+.grid-divider {
+  border-bottom: 1px solid #bfc1c3;
+  margin-bottom: 20px;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+@media (min-width: 641px) {
+  /* line 63, ../landregistry_elements/_layout.scss */
+  .grid-divider {
+    margin-left: 30px;
+    margin-right: 30px;
+  }
+}
+
+/* line 77, ../landregistry_elements/_layout.scss */
+.grid {
+  float: left;
+  width: 100%;
+}
+
+@media (min-width: 641px) {
+  /* line 83, ../landregistry_elements/_layout.scss */
+  .grid-1-4 {
+    width: 25%;
+  }
+}
+
+@media (min-width: 641px) {
+  /* line 89, ../landregistry_elements/_layout.scss */
+  .grid-1-3 {
+    width: 33.333333333%;
+  }
+}
+
+@media (min-width: 641px) {
+  /* line 95, ../landregistry_elements/_layout.scss */
+  .grid-1-2 {
+    width: 50%;
+  }
+}
+
+@media (min-width: 641px) {
+  /* line 101, ../landregistry_elements/_layout.scss */
+  .grid-2-3 {
+    width: 66.666666667%;
+  }
+}
+
+@media (min-width: 641px) {
+  /* line 107, ../landregistry_elements/_layout.scss */
+  .grid-3-4 {
+    width: 75%;
+  }
+}
+
+/* line 114, ../landregistry_elements/_layout.scss */
+.grid .inner-block {
+  padding: 0;
+}
+@media (min-width: 641px) {
+  /* line 114, ../landregistry_elements/_layout.scss */
+  .grid .inner-block {
+    margin: 0 15px;
+  }
+}
+
+/* line 128, ../landregistry_elements/_layout.scss */
+.inner-block .grid-wrapper {
+  padding: 0;
+  margin-left: -15px;
+  margin-right: -15px;
+}
+/* line 135, ../landregistry_elements/_layout.scss */
+.inner-block .grid-divider {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+/* line 5, ../landregistry_elements/_header-proposition.scss */
+.header-proposition .content {
+  padding-top: 5px;
+}

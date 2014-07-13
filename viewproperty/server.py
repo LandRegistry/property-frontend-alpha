@@ -13,11 +13,15 @@ def property(title_number):
     app.logger.info("URL requested %s" % title_url)
     r = requests.get(title_url)
     json = r.json()
-    return render_template('view_property.html', title_number = json['title_number'])
+    app.logger.info("Found the following title: %s" % json)
+    if json:
+        return render_template('view_property.html',  title_number = json['title_number'], address = json['address'], postcode = json['postcode'])
+    else:
+        return render_template('404.html'), 404
 
 @app.after_request
 def after_request(response):
-    response.headers.add('Content-Security-Policy', "default-src 'self'")
+    response.headers.add('Content-Security-Policy', "default-src 'self' 'unsafe-inline' data:") # can we get some guidance on this?
     response.headers.add('X-Frame-Options', 'deny')
     response.headers.add('X-Content-Type-Options', 'nosniff')
     response.headers.add('X-XSS-Protection', '1; mode=block')

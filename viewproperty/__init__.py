@@ -1,6 +1,5 @@
 import os, logging
 from flask import Flask
-from flask.ext.assets import Environment, Bundle
 
 app = Flask(__name__)
 
@@ -11,17 +10,6 @@ if not app.debug:
     app.logger.setLevel(logging.INFO)
 
 app.logger.info("\nConfiguration\n%s\n" % app.config)
-
-assets = Environment(app)
-
-css_main = Bundle(
-    'stylesheets/main.scss',
-    filters='scss',
-    output='build/main.css',
-    depends="**/*.scss"
-)
-
-assets.register('css_main', css_main)
 
 @app.context_processor
 def asset_path_context_processor():

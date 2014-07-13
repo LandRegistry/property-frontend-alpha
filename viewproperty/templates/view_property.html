@@ -1,5 +1,13 @@
 {% extends "landregistry_base.html" %}
 
 {% block content %}
-    <p>This is the property page for title number {{ title_number }} </p>
+
+    {% if title_number %}
+        <p>Details for the following title number {{ title_number }}</p>
+        <p>Address: {{ address }}</p>
+        <p>Post code: {{ postcode }}</p>
+    {% else %}
+        <p>Not property found for that title number</p>
+    {% endif %}
+
 {% endblock %}
