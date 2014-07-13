@@ -2,12 +2,26 @@
 
 {% block content %}
 
-    {% if title_number %}
-        <p>Details for the following title number {{ title_number }}</p>
-        <p>Address: {{ address }}</p>
-        <p>Post code: {{ postcode }}</p>
-    {% else %}
-        <p>Not property found for that title number</p>
-    {% endif %}
+<main id="wrapper" role="main">
+  <div id="content">
+
+    <div class="inner-block">
+
+        <div class="text">
+            {% if title_number %}
+                <p>Details for the following title number {{ title_number }}</p>
+                <p>Address: {{ address }}</p>
+                <p>Post code: {{ postcode }}</p>
+            {% else %}
+                <p>Not property found for that title number</p>
+            {% endif %}
+
+        </div>
+
+    </div>
+
+  </div>
+
+</main>
 
 {% endblock %}
