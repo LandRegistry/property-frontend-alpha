@@ -28,6 +28,10 @@ def search():
 def search():
     return render_template('search.html')
 
+@app.route('/search')
+def search():
+    return render_template('search.html')
+
 @app.after_request
 def after_request(response):
     response.headers.add('Content-Security-Policy', "default-src 'self' 'unsafe-inline' data:") # can we get some guidance on this?
