@@ -60,3 +60,6 @@ docs/_build/
 #Vagrant
 .vagrant/
 .DS_Store
+
+#Dev Env
+dev/
