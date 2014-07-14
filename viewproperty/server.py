@@ -1,7 +1,6 @@
 from viewproperty import app
 from flask import render_template
 import requests
-@app.debug = true
 
 @app.route('/')
 def index():
@@ -19,10 +18,6 @@ def property(title_number):
         return render_template('view_property.html',  title_number = json['title_number'], address = json['address'], postcode = json['postcode'])
     else:
         return render_template('404.html'), 404
-
-@app.route('/search')
-def search():
-    return render_template('search.html')
 
 @app.route('/search')
 def search():
