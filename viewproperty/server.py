@@ -1,7 +1,6 @@
 from viewproperty import app
 from flask import render_template
 import requests
-@app.debug = true
 
 @app.route('/')
 def index():
