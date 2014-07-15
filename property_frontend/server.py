@@ -1,4 +1,4 @@
-from viewproperty import app
+from property_frontend import app
 from flask import render_template
 import requests
 
