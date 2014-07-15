@@ -1,4 +1,4 @@
-from viewproperty.server import app
+from property-frontend.server import app
 import mock
 import unittest
 
