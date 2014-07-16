@@ -3,28 +3,31 @@
 {% block content %}
   <main id="wrapper" role="main">
     <div id="content">
+      <div class="inner-block">
+        
+        <h1 class="heading-48">
+          <span class="heading-27">Land registry</span>
+          Find property information
+          <span class="phase-block">
+            <span class="alpha">Alpha</span>
+          </span>
+        </h1>
 
-      <h1 class="heading-48">
-        <span class="heading-27">Land registry</span>
-        Find property information
-        <span class="phase-block">
-          <span class="alpha">Alpha</span>
-        </span>
-      </h1>
+        <div class="full-width"> <!--row -->
+          <p class="lede text">You can search the Land Registry for information on property or land such as title number, lease and purchase history.</p>
+          <form action="/search/results/" method="POST">
+            <fieldset>
+              <div class="form-group">
+                <label class="form-label" for="search">Search for property or land</label>
+                <input type="text" class="form-control" id="search" name="search"><br/>
+                <button type="submit" class="button">Search</button>
+              </div>
+            </fieldset>
+          </form>
+        </div>
 
-      <div class="full-width"> <!--row -->
-        <p class="lede text">You can search the Land Registry for information on property or land such as title number, lease and purchase history.</p>
-        <form action="/search/results/" method="POST">
-          <fieldset>
-            <div class="form-group">
-              <label class="form-label" for="search">Search for property or land</label>
-              <input type="text" class="form-control" id="search" name="search"><br/>
-              <button type="submit" class="button">Search</button>
-            </div>
-          </fieldset>
-        </form>
       </div>
-
+    </div>
   </main>
 
 {% endblock %}

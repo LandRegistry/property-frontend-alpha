@@ -3,31 +3,34 @@
 {% block content %}
   <main id="wrapper" role="main">
     <div id="content">
+      <div class="inner-block">
 
-      <h1>Search results</h1>
+        <h1>Search results</h1>
 
-      <div class="full-width"> <!--row -->
-        {% if results[0] %}
-        <ul class="results" id="ordered">
-            {% for results in results %}
-            <li class="result">
-              <h3>
-                <a href="/property/{{ results['title_number'] }}">Title Number: {{ results['title_number'] }}</a>
-              </h3>
-              <div class="meta">
-                <dl>
-                  <dt>Proprietor</dt>
-                  <dd>{{ results['proprietor'] }}</dd>
-                  <dt>Timestamp</dt>
-                  <dd>{{ results['timestamp'] }}</dd>
-                </dl>
-              </div>
-            </li>
-            {% endfor %}
-        </ul>
-        {% else %}
-          <p>No results found</p>
-        {% endif %}
+        <div class="full-width"> <!--row -->
+          {% if results[0] %}
+          <ul class="results" id="ordered">
+              {% for results in results %}
+              <li class="result">
+                <h3>
+                  <a href="/property/{{ results['title_number'] }}">Title Number: {{ results['title_number'] }}</a>
+                </h3>
+                <div class="meta">
+                  <dl>
+                    <dt>Proprietor</dt>
+                    <dd>{{ results['proprietor'] }}</dd>
+                    <dt>Timestamp</dt>
+                    <dd>{{ results['timestamp'] }}</dd>
+                  </dl>
+                </div>
+              </li>
+              {% endfor %}
+          </ul>
+          {% else %}
+            <p>No results found</p>
+          {% endif %}
+        </div>
+        
       </div>
     </div>
   </main>
