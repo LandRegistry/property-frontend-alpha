@@ -1,5 +1,6 @@
 from property_frontend import app
 from flask import render_template
+from flask import request
 import requests
 
 @app.route('/')
@@ -19,9 +20,24 @@ def property(title_number):
     else:
         return render_template('404.html'), 404
 
-@app.route('/search')
+@app.route('/search/')
 def search():
     return render_template('search.html')
+
+@app.route('/search/results/', methods=['POST'])
+def search_results():
+    query = request.form['search']
+    search_api_url = app.config['SEARCH_API_URI']
+    search_url = search_api_url + "?query=" + query
+    app.logger.info("URL requested %s" % search_url)
+    r = requests.get(search_url)
+    json = r.json()
+    app.logger.info("Searched for the following: %s" % json)
+    if json:
+        return render_template('search_results.html', results = json['results'])
+    else:
+        return render_template('404.html'), 404
+
 
 @app.after_request
 def after_request(response):
