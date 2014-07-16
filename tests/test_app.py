@@ -6,7 +6,7 @@ class ViewProperyTestCase(unittest.TestCase):
 
     def setUp(self):
         app.config['TESTING'] = True
-        app.config['TITLE_API_URL'] = 'http://somefakeapi'
+        app.config['TITLE_API_URL'] = 'http://public-title-api'
         self.app = app.test_client()
 
 
@@ -15,4 +15,4 @@ class ViewProperyTestCase(unittest.TestCase):
         title_number = "TN1234567"
         self.app.get('/property/%s' % title_number)
         self.assertTrue(mock_get.called)
-        mock_get.assert_called_with("http://somefakeapi/titles/%s" % title_number)
+        mock_get.assert_called_with('http://public-title-api/title/%s' % title_number)

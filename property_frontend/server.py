@@ -9,7 +9,7 @@ def index():
 @app.route('/property/<title_number>')
 def property(title_number):
     titles_api_url = app.config['TITLE_API_URL']
-    title_url = "%s/titles/%s" % (titles_api_url, title_number)
+    title_url = "%s/title/%s" % (titles_api_url, title_number)
     app.logger.info("URL requested %s" % title_url)
     r = requests.get(title_url)
     json = r.json()
