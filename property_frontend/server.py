@@ -19,7 +19,13 @@ def property(title_number):
     else:
         json = r.json()
         app.logger.info("Found the following title: %s" % json)
-        return render_template('view_property.html',  title_number = json['title_number'], address = json['address'], postcode = json['postcode'])
+        return render_template('view_property.html',
+                title_number = json['title_number'],
+                house_number = json['house_number'],
+                road = json['road'],
+                town = json['town'],
+                postcode = json['postcode'],
+                pricepaid = json['pricepaid'])
 
 @app.route('/search/')
 def search():
