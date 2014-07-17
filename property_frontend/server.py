@@ -12,12 +12,13 @@ def property(title_number):
     title_url = "%s/title/%s" % (titles_api_url, title_number)
     app.logger.info("URL requested %s" % title_url)
     r = requests.get(title_url)
-    json = r.json()
-    app.logger.info("Found the following title: %s" % json)
-    if json:
-        return render_template('view_property.html',  title_number = json['title_number'], address = json['address'], postcode = json['postcode'])
+    app.logger.info("STATUS CODE %s" % r.status_code)
+    if r.status_code == 400:
+            return render_template('404.html'), 404
     else:
-        return render_template('404.html'), 404
+        json = r.json()
+        app.logger.info("Found the following title: %s" % json)
+        return render_template('view_property.html',  title_number = json['title_number'], address = json['address'], postcode = json['postcode'])
 
 @app.route('/search')
 def search():
