@@ -13,7 +13,7 @@ def property(title_number):
     title_url = "%s/title/%s" % (titles_api_url, title_number)
     app.logger.info("URL requested %s" % title_url)
     r = requests.get(title_url)
-    app.logger.info("STATUS CODE %s" % r.status_code)
+    app.logger.info("Status code %s" % r.status_code)
     if r.status_code == 400:
             return render_template('404.html'), 404
     else:
@@ -25,8 +25,12 @@ def property(title_number):
                 road = json['road'],
                 town = json['town'],
                 postcode = json['postcode'],
-                pricepaid = json['pricepaid'])
+                pricepaid = json['price_paid'])
 
+
+# Note -Does elasticsearch return empty json array
+# for now results? If so I don't think maybe just show
+# results page with no results message not 404?
 @app.route('/search/')
 def search():
     return render_template('search.html')
@@ -36,6 +40,11 @@ def search_results():
     query = request.form['search']
     search_api_url = app.config['SEARCH_API_URI']
     search_url = search_api_url + "?query=" + query
+    # Note
+    #   search_url = "%s?query=%s" % (search_api_url, query)
+    # or
+    # search_url = "{0}?={1}".format(search_api_url, query)
+
     app.logger.info("URL requested %s" % search_url)
     r = requests.get(search_url)
     json = r.json()
