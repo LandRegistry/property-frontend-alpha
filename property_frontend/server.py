@@ -9,23 +9,31 @@ def index():
 
 @app.route('/property/<title_number>')
 def property(title_number):
-    titles_api_url = app.config['TITLE_API_URL']
-    title_url = "%s/titles/%s" % (titles_api_url, title_number)
-    app.logger.info("URL requested %s" % title_url)
-    r = requests.get(title_url)
-    app.logger.info("Status code %s" % r.status_code)
-    if r.status_code == 400:
+    #NOTE : by pass public titles url for the
+    # moment and go to elastic search
+    #titles_api_url = app.config['TITLE_API']
+    #app.logger.info("titles api : %s" % titles_api_url)
+    # title_url = "%s/titles/%s" % (titles_api_url, title_number)
+    # app.logger.info("URL requested %s" % title_url)
+
+    title_url = "%s/%s/%s" % (app.config['SEARCH_API'], 'titles', title_number)
+    app.logger.info("Requesting title url : %s" % title_url)
+
+    #TODO - put error handling around request
+    response = requests.get(title_url)
+    app.logger.info("Status code %s" % response.status_code)
+    if response.status_code == 400:
             return render_template('404.html'), 404
     else:
-        json = r.json()
-        app.logger.info("Found the following title: %s" % json)
+        title_json = response.json()
+        app.logger.info("Found the following title: %s" % title_json)
         return render_template('view_property.html',
-                title_number = json['title_number'],
-                house_number = json['house_number'],
-                road = json['road'],
-                town = json['town'],
-                postcode = json['postcode'],
-                pricepaid = json['price_paid'])
+                title_number = title_json['title_number'],
+                house_number = title_json['house_number'],
+                road = title_json['road'],
+                town = title_json['town'],
+                postcode = title_json['postcode'],
+                price_paid = title_json['price_paid'])
 
 
 # Note -Does elasticsearch return empty json array
@@ -38,7 +46,7 @@ def search():
 @app.route('/search/results/', methods=['POST'])
 def search_results():
     query = request.form['search']
-    search_api_url = app.config['SEARCH_API_URI']
+    search_api_url = "%s/%s" % (app.config['SEARCH_API'], 'search')
     search_url = search_api_url + "?query=" + query
     # Note
     #   search_url = "%s?query=%s" % (search_api_url, query)
