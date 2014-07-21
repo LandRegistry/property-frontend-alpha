@@ -7,15 +7,20 @@
 
     <div class="inner-block">
 
-        <div class="text">
-                <p>Details for the following title number {{ title_number }}</p>
-                <p>House number: {{ house_number }}</p>
-                <p>Road: {{ road }}</p>
-                <p>Town: {{ town }}</p>
-                <p>Postcode: {{ postcode }}</p>
-                <p>Price paid: {{ price_paid }}</p>
-
+        <h1>Details for title <span class="title_id">{{ title_number }}</span></h1>
+        <h2>Property Address</h2>
+        <div class="adr">   
+            <div class="street-address">{{ house_number }} {{ road }}</div>
+            <div class="locality">{{ town }}</div>
+            <div class="postal-code">{{ postcode }}</div>
         </div>
+
+        <div class="price_paid">
+            <p>Price paid £{{ price_paid }}</p>
+        </div>
+
+
+
 
     </div>
 
