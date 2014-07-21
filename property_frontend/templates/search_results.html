@@ -18,14 +18,17 @@
                 <div class="meta">
                   <dl>
                     <dt>Proprietors</dt>
+                    {% set count = 1 %}
                     {% for proprietors in results['proprietors'] %}
-                        <dd>{{ proprietors['first_name'] }} {{ proprietors['last_name'] }}</dd>
+                        <dd id="propname-{{ count }}">{{ proprietors['first_name'] }} {{ proprietors['last_name'] }}</dd>
+                        {% set count = count + 1 %}
                     {% endfor %}
 
                     <dt>Address</dt>
-                    <dd>{{ results['property']['address']['line_1'] }}</dd>
-                    <dd>{{ results['property']['address']['line_2'] }}</dd>
-                    <dd>{{ results['property']['address']['postcode'] }}</dd>
+                    <dd id="house_number">{{ results['property']['address']['house_number'] }}</dd>
+                    <dd id="road">{{ results['property']['address']['road'] }}</dd>
+                    <dd id="town">{{ results['property']['address']['town'] }}</dd>
+                    <dd id="postcode">{{ results['property']['address']['postcode'] }}</dd>
                   </dl>
                 </div>
               </li>
