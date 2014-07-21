@@ -23,9 +23,9 @@
                     {% endfor %}
 
                     <dt>Address</dt>
-                    <dd>{{ results['property']['address']['line_1'] }}</dd>
-                    <dd>{{ results['property']['address']['line_2'] }}</dd>
-                    <dd>{{ results['property']['address']['postcode'] }}</dd>
+                    <dd>{{ results['house_number'] }} {{ results['road'] }}</dd>
+                    <dd>{{ results['towd'] }}</dd>
+                    <dd>{{ results['postcode'] }}</dd>
                   </dl>
                 </div>
               </li>

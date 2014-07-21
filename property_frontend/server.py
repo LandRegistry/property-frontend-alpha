@@ -50,7 +50,7 @@ def search_results():
     app.logger.info("URL requested %s" % search_url)
     r = requests.get(search_url)
     json = r.json()
-    app.logger.info("Searched for the following: %s" % json)
+    app.logger.info("Found for the following: %s" % json)
     if json:
         return render_template('search_results.html', results = json['results'])
     else:
