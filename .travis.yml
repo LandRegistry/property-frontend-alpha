@@ -10,7 +10,7 @@ env:
 deploy:
   provider: heroku
   api_key:
-    secure: VkgK6jY8SOHplhXbNew7pHd1mScFBvnbSy8VdkhBv+FeBAVyXkvXteMlT95gVOSVgftYQnwH6QYwL9/qIsXAnaN6JRVswv9NvV0eOvpqe8rfznU/MOKOqvFumHcTt4AhtVLB0YCixJVcdcrzX/hWF6YUNUMhYb0CO/+lrgPUS+I=
+    secure: TMpwzEww7Nr4+mSXakB8JUQFI5Uw3hGHLp6gaT7CQKKfDgThSYSOQIDydgzXTJKV3PrpToW4LlllEGlPCgWnUkB9McCmE6zrxJf5V2VQ2FmG5JpFuYlyI4iP4IAR0woZ0ucKRMzofpI9Nq1F+WLgl2aBNHAOGUna6MZ3bMvrQBY=
   app: lr-property-frontend
   on:
     repo: LandRegistry/property-frontend
