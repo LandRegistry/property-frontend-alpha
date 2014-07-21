@@ -9,20 +9,14 @@ def index():
 
 @app.route('/property/<title_number>')
 def property(title_number):
-    #NOTE : by pass public titles url for the
-    # moment and go to elastic search
-    #titles_api_url = app.config['TITLE_API']
-    #app.logger.info("titles api : %s" % titles_api_url)
-    # title_url = "%s/titles/%s" % (titles_api_url, title_number)
-    # app.logger.info("URL requested %s" % title_url)
 
     title_url = "%s/%s/%s" % (app.config['SEARCH_API'], 'titles', title_number)
     app.logger.info("Requesting title url : %s" % title_url)
 
-    #TODO - put error handling around request
+    #TODO - put more/better error handling around request
     response = requests.get(title_url)
     app.logger.info("Status code %s" % response.status_code)
-    if response.status_code == 400:
+    if response.status_code == 404:
             return render_template('404.html'), 404
     else:
         title_json = response.json()
