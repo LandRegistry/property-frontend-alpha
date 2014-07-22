@@ -5,18 +5,26 @@
 <main id="wrapper" role="main">
   <div id="content">
 
+    {% include "inc_alpha_banner.html" %}
+
     <div class="inner-block">
 
-        <h1>Details for title <span class="title_id">{{ title_number }}</span></h1>
-        <h2>Property Address</h2>
+        <h1 class="heading-xlarge">
+          Details for title <span class="title_id">{{ title_number }}</span>
+        </h1>
+
+        <h2 class="heading-large">Property Address</h2>
+
         <div class="adr">   
-            <div class="street-address">{{ house_number }} {{ road }}</div>
+            <div class="street-address">{{ house_number }}<br/>{{ road }}</div>
             <div class="locality">{{ town }}</div>
             <div class="postal-code">{{ postcode }}</div>
         </div>
 
+        <h2 class="heading-large">Price paid</h2>
+
         <div class="price_paid">
-            <p>Price paid £<span id="price-paid">{{ price_paid }}</span></p>
+            <p>Price paid: <b>&pound;<span id="price-paid">{{ price_paid }}</span></b></p>
         </div>
 
 

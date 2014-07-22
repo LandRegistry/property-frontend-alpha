@@ -1259,3 +1259,9 @@ main {
 
 .header-proposition .content {
   padding-top: 5px; }
+
+b, strong {
+  font-weight: bold; }
+
+.result {
+  margin-bottom: 1em; }
