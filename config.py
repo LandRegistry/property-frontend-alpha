@@ -11,3 +11,8 @@ class DevelopmentConfig(Config):
 class TestConfig(DevelopmentConfig):
     TESTING = True
     SEARCH_API='http://localhost:8003'
+
+class DockerConfig(Config):
+    DEBUG = True
+    TITLE_API = os.environ.get('PUBLICTITLESAPI_1_PORT_8005_TCP', '').replace('tcp://', 'http://')
+    SEARCH_API = os.environ.get('SEARCHAPI_1_PORT_8003_TCP', '').replace('tcp://', 'http://')
