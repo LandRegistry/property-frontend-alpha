@@ -4,3 +4,6 @@
 [submodule "static/govuk_toolkit"]
 	path = static/govuk_toolkit
 	url = https://github.com/alphagov/govuk_frontend_toolkit.git
+[submodule "property_frontend/static/govuk_toolkit"]
+	path = property_frontend/static/govuk_toolkit
+	url = https://github.com/alphagov/govuk_frontend_toolkit.git
