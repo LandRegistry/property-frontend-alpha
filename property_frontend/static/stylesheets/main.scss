@@ -15,9 +15,60 @@
 @import '../govuk_toolkit/stylesheets/design-patterns/_alpha-beta';
 @import '../govuk_toolkit/stylesheets/design-patterns/_buttons';
 
+
+// GOVUK elements imports
+// ==========================================================================
+
+
+// Helpers
+@import "../govuk_elements/helpers";
+
+// Reset
+@import "../govuk_elements/reset";
+
+// Typography
+@import "../govuk_elements/typography";
+
+// Layout
+@import "../govuk_elements/layout";
+
+// Modules
+// ==========================================================================
+
+// Forms
+@import "../govuk_elements/forms";
+
+// Tables
+@import "../govuk_elements/tables";
+
+// Buttons
+@import "../govuk_elements/buttons";
+
+// Details
+@import "../govuk_elements/details";
+
+// Lists
+@import "../govuk_elements/lists";
+
+// Panels
+@import "../govuk_elements/panels";
+
+// Colours
+@import "../govuk_elements/colours";
+
+// Icons
+@import "../govuk_elements/icons";
+
+
 // Land Registry elements imports
 // ==========================================================================
 
 @import '../landregistry_elements/_normalise';
 @import '../landregistry_elements/_layout';
 @import '../landregistry_elements/_header-proposition';
+
+
+// Sprint #1 styles. SHAME REFACTOR
+// ==========================================================================
+
+
