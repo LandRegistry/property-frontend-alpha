@@ -1,11 +1,10 @@
 from property_frontend import app
-from flask import render_template
-from flask import request
+from flask import render_template, request, redirect, url_for
 import requests
 
 @app.route('/')
 def index():
-     return render_template('index.html')
+     return render_template('search.html')
 
 @app.route('/property/<title_number>')
 def property(title_number):
@@ -20,6 +19,7 @@ def property(title_number):
             return render_template('404.html'), 404
     else:
         title_json = response.json()
+        print title_json
         app.logger.info("Found the following title: %s" % title_json)
         return render_template('view_property.html',
                 title_number = title_json['title_number'],
@@ -35,7 +35,7 @@ def property(title_number):
 # results page with no results message not 404?
 @app.route('/search/')
 def search():
-    return render_template('search.html')
+    return redirect(url_for('index'))
 
 @app.route('/search/results/', methods=['POST'])
 def search_results():
