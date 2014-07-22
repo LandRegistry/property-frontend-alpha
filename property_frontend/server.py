@@ -37,9 +37,9 @@ def property(title_number):
 def search():
     return redirect(url_for('index'))
 
-@app.route('/search/results/', methods=['POST'])
+@app.route('/search/results/')
 def search_results():
-    query = request.form['search']
+    query = request.args.get('search', '')
     search_api_url = "%s/%s" % (app.config['SEARCH_API'], 'search')
     search_url = search_api_url + "?query=" + query
     # Note
