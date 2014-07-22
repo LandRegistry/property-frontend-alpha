@@ -3,40 +3,46 @@
 {% block content %}
   <main id="wrapper" role="main">
     <div id="content">
-      <div class="inner-block">
 
-        <h1>Search results</h1>
+      {% include "inc_alpha_banner.html" %}
+
+      <div class="inner-block">
+        
+        <h1 class="heading-xlarge">
+          Search results
+        </h1>
 
         <div class="full-width"> <!--row -->
-          {% if results[0] %}
-          <ul class="results" id="ordered">
-              {% for results in results %}
-              <li class="result">
-                <h3>
-                  <a href="/property/{{ results['title_number'] }}">Title Number: {{ results['title_number'] }}</a>
-                </h3>
-                <div class="meta">
-                  <dl>
-                    <dt>Proprietors</dt>
-                    {% set count = 1 %}
-                    {% for proprietors in results['proprietors'] %}
-                        <dd id="propname-{{ count }}">{{ proprietors['first_name'] }} {{ proprietors['last_name'] }}</dd>
-                        {% set count = count + 1 %}
-                    {% endfor %}
-
-                    <dt>Address</dt>
-                    <dd id="house_number">{{ results['property']['address']['house_number'] }}</dd>
-                    <dd id="road">{{ results['property']['address']['road'] }}</dd>
-                    <dd id="town">{{ results['property']['address']['town'] }}</dd>
-                    <dd id="postcode">{{ results['property']['address']['postcode'] }}</dd>
-                  </dl>
-                </div>
-              </li>
-              {% endfor %}
-          </ul>
-          {% else %}
-            <p>No results found</p>
-          {% endif %}
+          <div class="text">
+            {% if results[0] %}
+              <ul class="results" id="ordered">
+                {% for results in results %}
+                  <li class="result">
+                    <h2 class="heading-large">
+                      <a href="/property/{{ results['title_number'] }}">Title Number: {{ results['title_number'] }}</a>
+                    </h2>
+                    <div class="meta">
+                      <dl>
+                        <dt>Proprietors:</dt>
+                        {% set count = 1 %}
+                        {% for proprietors in results['proprietors'] %}
+                          <dd id="propname-{{ count }}">{{ proprietors['first_name'] }} {{ proprietors['last_name'] }}</dd>
+                          {% set count = count + 1 %}
+                        {% endfor %}
+                        <dt>Address:</dt>
+                        <dd id="house_number">{{ results['property']['address']['house_number'] }}</dd>
+                        <dd id="road">{{ results['property']['address']['road'] }}</dd>
+                        <dd id="town">{{ results['property']['address']['town'] }}</dd>
+                        <dd id="postcode">{{ results['property']['address']['postcode'] }}</dd>
+                      </dl>
+                    </div>
+                  </li>
+                {% endfor %}
+              </ul>
+            {% else %}
+              <p>Sorry, no results found &mdash; <a href="/search">you can search again here</a>.</p>
+            {% endif %}
+          </div>
         </div>
 
       </div>

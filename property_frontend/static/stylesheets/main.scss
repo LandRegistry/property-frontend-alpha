@@ -68,7 +68,22 @@
 @import '../landregistry_elements/_header-proposition';
 
 
-// Sprint #1 styles. SHAME REFACTOR
+// Sprint #1 styles. SHAME! REFACTOR!
 // ==========================================================================
 
+// Search results listing items
+.result {
 
+  padding-bottom: 1em;
+  border-bottom: 1px solid $grey-3;
+
+  dt, dd {
+    display: block;
+  }
+  dt {
+
+  }
+  dd {
+    font-weight: bold;
+  }
+}

@@ -1259,3 +1259,11 @@ main {
 
 .header-proposition .content {
   padding-top: 5px; }
+
+.result {
+  padding-bottom: 1em;
+  border-bottom: 1px solid #dee0e2; }
+  .result dt, .result dd {
+    display: block; }
+  .result dd {
+    font-weight: bold; }
