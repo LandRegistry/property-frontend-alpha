@@ -4,6 +4,8 @@ class Config(object):
     DEBUG = False
     TITLE_API = os.environ.get('TITLE_API')
     SEARCH_API = os.environ.get('SEARCH_API')
+    BASIC_AUTH_USERNAME = os.environ.get('BASIC_AUTH_USERNAME')
+    BASIC_AUTH_PASSWORD = os.environ.get('BASIC_AUTH_PASSWORD')
 
 class DevelopmentConfig(Config):
     DEBUG = True
