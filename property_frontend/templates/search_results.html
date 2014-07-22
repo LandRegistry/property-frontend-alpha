@@ -3,28 +3,24 @@
 {% block content %}
   <main id="wrapper" role="main">
     <div id="content">
+
+      {% include "inc_alpha_banner.html" %}
+
       <div class="inner-block">
 
-        <h1>Search results</h1>
+        <h1 class="heading-xlarge">Search results</h1>
 
         <div class="full-width"> <!--row -->
           {% if results[0] %}
           <ul class="results" id="ordered">
               {% for results in results %}
               <li class="result">
-                <h3>
+                <h2 class="heading-large">
                   <a href="/property/{{ results['title_number'] }}">Title Number: {{ results['title_number'] }}</a>
-                </h3>
+                </h2>
                 <div class="meta">
                   <dl>
-                    <dt>Proprietors</dt>
-                    {% set count = 1 %}
-                    {% for proprietors in results['proprietors'] %}
-                        <dd id="propname-{{ count }}">{{ proprietors['first_name'] }} {{ proprietors['last_name'] }}</dd>
-                        {% set count = count + 1 %}
-                    {% endfor %}
-
-                    <dt>Address</dt>
+                    <dt class="visuallyhidden">Address</dt>
                     <dd id="house_number">{{ results['house_number'] }}</dd>
                     <dd id="road">{{ results['road'] }}</dd>
                     <dd id="town">{{ results['town'] }}</dd>
