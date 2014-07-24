@@ -10,26 +10,23 @@
     <div class="inner-block">
 
         <h1 class="heading-xlarge">
-          Details for title <span class="title_id">{{ title_number }}</span>
+          Details for title <span class="title_id">{{ title_json.title_number }}</span>
         </h1>
 
         <h2 class="heading-large">Property Address</h2>
 
-        <div class="adr">   
-            <div class="street-address">{{ house_number }}<br/>{{ road }}</div>
-            <div class="locality">{{ town }}</div>
-            <div class="postal-code">{{ postcode }}</div>
+        <div class="adr">
+            <div class="street-address">{{ title_json.property.address.house_number }}<br/>{{ title_json.property.address.road }}</div>
+            <div class="locality">{{ title_json.property.address.town }}</div>
+            <div class="postal-code">{{ title_json.property.address.postcode }}</div>
         </div>
 
-        <h2 class="heading-large">Price paid</h2>
-
-        <div class="price_paid">
-            <p>Price paid: <b>&pound;<span id="price-paid">{{ price_paid }}</span></b></p>
-        </div>
-
-
-
-
+        {% if title_json.payment.price_paid %}
+            <h2 class="heading-large">Price paid</h2>
+            <div class="price_paid">
+                <p>Price paid: <b>&pound;<span id="price-paid">{{ title_json.payment.price_paid }}</span></b></p>
+            </div>
+        {% endif %}
     </div>
 
   </div>

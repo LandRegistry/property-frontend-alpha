@@ -13,21 +13,19 @@ def property(title_number):
     app.logger.info("Requesting title url : %s" % title_url)
 
     #TODO - put more/better error handling around request
-    response = requests.get(title_url)
-    app.logger.info("Status code %s" % response.status_code)
-    if response.status_code == 404:
-            return render_template('404.html'), 404
-    else:
-        title_json = response.json()
-        print title_json
-        app.logger.info("Found the following title: %s" % title_json)
-        return render_template('view_property.html',
-                title_number = title_json['title_number'],
-                house_number = title_json['house_number'],
-                road = title_json['road'],
-                town = title_json['town'],
-                postcode = title_json['postcode'],
-                price_paid = title_json['price_paid'])
+    try:
+        response = requests.get(title_url)
+        app.logger.info("Status code %s" % response.status_code)
+        if response.status_code == 404:
+                return render_template('404.html'), 404
+        else:
+            title_json = response.json()
+            print title_json
+            app.logger.info("Found the following title: %s" % title_json)
+            return render_template('view_property.html', title_json = title_json)
+    except Exception as e:
+        app.logger.error("Could not retrieve title number %s: Error %s" % (title_url, e))
+        raise RuntimeError
 
 
 # Note -Does elasticsearch return empty json array
