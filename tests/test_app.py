@@ -37,4 +37,3 @@ class ViewPropertyTestCase(unittest.TestCase):
         search_query = "TN12"
         response = self.app.post('/search/results', data=dict(search = search_query))
         assert response.status_code == 500
-
