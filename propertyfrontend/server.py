@@ -10,6 +10,11 @@ import requests
 
 search_api = app.config['SEARCH_API']
 
+@app.template_filter()
+def currency(value):
+    """Format a comma separated  currency to 2 decimal places."""
+    return "{:,.2f}".format(float(value))
+
 @app.route('/')
 def index():
      return render_template('search.html')

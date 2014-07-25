@@ -31,7 +31,7 @@ class MockProperty(MockResponse):
             }
         },
         "payment":{
-            "price_paid" : "price_paid"
+            "price_paid" : 1000
         }
     }
 
