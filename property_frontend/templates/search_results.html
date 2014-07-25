@@ -4,38 +4,48 @@
   <main id="wrapper" role="main">
     <div id="content">
       <div class="inner-block">
+        <div class="full-width"> <!--row -->
+          <form action="{{url_for('search_results')}}" method="GET">
+            <label for="search">
+              <h1 class="heading-large">
+                Search results for
+              </h1>  
+            </label>
+            <div class="form-group">
+              <input type="text" class="form-control" id="search" name="search">
+              <input type="submit" class="button" value="Search">
+            </div>
 
-        <h1>Search results</h1>
+          </form>
+        </div>
 
         <div class="full-width"> <!--row -->
           {% if results[0] %}
-          <ul class="results" id="ordered">
-              {% for results in results %}
-              <li class="result">
-                <h3>
-                  <a href="/property/{{ results['title_number'] }}">Title Number: {{ results['title_number'] }}</a>
-                </h3>
-                <div class="meta">
-                  <dl>
-                    <dt>Proprietors</dt>
-                    {% set count = 1 %}
-                    {% for proprietors in results['proprietors'] %}
-                        <dd id="propname-{{ count }}">{{ proprietors['first_name'] }} {{ proprietors['last_name'] }}</dd>
-                        {% set count = count + 1 %}
-                    {% endfor %}
-
-                    <dt>Address</dt>
-                    <dd id="house_number">{{ results['property']['address']['house_number'] }}</dd>
-                    <dd id="road">{{ results['property']['address']['road'] }}</dd>
-                    <dd id="town">{{ results['property']['address']['town'] }}</dd>
-                    <dd id="postcode">{{ results['property']['address']['postcode'] }}</dd>
-                  </dl>
-                </div>
-              </li>
-              {% endfor %}
-          </ul>
+            <ul class="results">
+                {% for result in results %}
+                  <li class="result">
+                    <h3>
+                      <a href="/property/{{ results['title_number'] }}">Title number: {{ results['title_number'] }}</a>
+                    </h3>
+                    <div class="vcard">
+                      <div class="adr">
+                        <div class="street-address">
+                          {{ results['property']['address']['house_number'] }}, 
+                          {{ results['property']['address']['road'] }}
+                        </div>
+                        <div>
+                          <span class="locality">{{ results['property']['address']['town'] }}</span>,  
+                          <span class="postal-code">{{ results['property']['address']['postcode'] }}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                {% endfor %}
+            </ul>
           {% else %}
-            <p>No results found</p>
+            <p>
+              No results found
+            </p>
           {% endif %}
         </div>
 

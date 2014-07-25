@@ -46,10 +46,6 @@ def search_results():
     query = request.args.get('search', '')
     search_api_url = "%s/%s" % (app.config['SEARCH_API'], 'search')
     search_url = search_api_url + "?query=" + query
-    # Note
-    #   search_url = "%s?query=%s" % (search_api_url, query)
-    # or
-    # search_url = "{0}?={1}".format(search_api_url, query)
 
     app.logger.info("URL requested %s" % search_url)
     r = requests.get(search_url)
@@ -59,7 +55,6 @@ def search_results():
         return render_template('search_results.html', results = json['results'])
     else:
         return render_template('404.html'), 404
-
 
 @app.after_request
 def after_request(response):
