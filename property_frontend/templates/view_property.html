@@ -24,7 +24,7 @@
         {% if title_json.payment.price_paid %}
             <h2 class="heading-large">Price paid</h2>
             <div class="price_paid">
-                <p>Price paid: <b>&pound;<span id="price-paid">{{ title_json.payment.price_paid }}</span></b></p>
+                <p>Price paid: <b>&pound;<span id="price-paid">{{ title_json.payment.price_paid | currency }}</span></b></p>
             </div>
         {% endif %}
     </div>
