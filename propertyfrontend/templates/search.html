@@ -7,7 +7,7 @@
     {% include "inc_alpha_banner.html" %}
 
       <div class="inner-block">
-        
+
         <h1 class="heading-xlarge">
           Find property information
         </h1>
@@ -15,8 +15,8 @@
         <div class="full-width"> <!--row -->
           <p class="lede text">You can search the Land Registry for information on property or land such as title number, lease and purchase history.</p>
 
-          <form action="/search/results/" method="GET">
-            
+          <form action="/search/results" method="POST">
+
             <div class="form-group">
               <label class="form-label-bold" for="search">Search for property or land</label>
               <input type="text" class="form-control" id="search" name="search">
