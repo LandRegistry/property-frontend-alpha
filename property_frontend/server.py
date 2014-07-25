@@ -2,6 +2,11 @@ from property_frontend import app
 from flask import render_template, request, redirect, url_for
 import requests
 
+@app.template_filter()
+def currency(value):
+    """Format a comma separated  currency to 2 decimal places."""
+    return "{:,.2f}".format(float(value))
+
 @app.route('/')
 def index():
      return render_template('search.html')
@@ -19,7 +24,7 @@ def property(title_number):
             return render_template('404.html'), 404
     else:
         title_json = response.json()
-        print title_json
+
         app.logger.info("Found the following title: %s" % title_json)
         return render_template('view_property.html',
                 title_number = title_json['title_number'],
@@ -28,7 +33,6 @@ def property(title_number):
                 town = title_json['town'],
                 postcode = title_json['postcode'],
                 price_paid = title_json['price_paid'])
-
 
 # Note -Does elasticsearch return empty json array
 # for now results? If so I don't think maybe just show

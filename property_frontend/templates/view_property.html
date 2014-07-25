@@ -9,14 +9,14 @@
 
         <h1>Details for title <span class="title_id">{{ title_number }}</span></h1>
         <h2>Property Address</h2>
-        <div class="adr">   
-            <div class="street-address">{{ house_number }} {{ road }}</div>
+        <div class="adr">
+          <div class="street-address">{{ house_number }} {{ road }}</div>
             <div class="locality">{{ town }}</div>
             <div class="postal-code">{{ postcode }}</div>
         </div>
 
         <div class="price_paid">
-            <p>Price paid £<span id="price-paid">{{ price_paid }}</span></p>
+            <p>Price paid &pound;<span id="price-paid">{{ price_paid|currency }}</span></p>
         </div>
 
 
