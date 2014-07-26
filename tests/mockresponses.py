@@ -1,20 +1,12 @@
+import requests
+
+
 class MockResponse(object):
     status_code = 200
-    requests_raise_for_status = None # this is in the requests library api
 
     @classmethod
     def raise_for_status(cls):
-        return cls.requests_raise_for_status
-
-
-class Mock404(MockResponse):
-    requests_raise_for_status = True
-    status_code = 404
-
-
-class Mock500(MockResponse):
-    requests_raise_for_status = True
-    status_code = 500
+        return None
 
 
 class MockProperty(MockResponse):
@@ -47,3 +39,14 @@ class MockSearchResults(MockProperty):
     def json(cls):
         return cls.results
 
+
+class Mock404(MockResponse):
+    status_code = 404
+
+    @classmethod
+    def raise_for_status(cls):
+        raise requests.exceptions.HTTPError()
+
+
+class Mock500(Mock404):
+    status_code = 500
