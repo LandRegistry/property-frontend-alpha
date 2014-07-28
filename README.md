@@ -3,6 +3,7 @@ Land Registry Property Front End
 
 [![Build Status](https://travis-ci.org/LandRegistry/property-frontend.svg?branch=master)](https://travis-ci.org/LandRegistry/property-frontend)
 
+[![Coverage Status](https://img.shields.io/coveralls/LandRegistry/property-frontend.svg)](https://coveralls.io/r/LandRegistry/property-frontend)
 
 ### Getting started
 
