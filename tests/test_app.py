@@ -56,3 +56,7 @@ class ViewPropertyTestCase(unittest.TestCase):
         assert '10,000.00' == currency(10000)
         assert '100,000.00' == currency(100000)
         # that's enough now, Ed.
+
+    def health(self):
+        response = self.app.get('/health')
+        assert response.status == '200 OK'

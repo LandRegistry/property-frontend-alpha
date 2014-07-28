@@ -6,10 +6,12 @@ from flask import redirect
 from flask import url_for
 from flask import abort
 
+from healthcheck import HealthCheck
+
 import requests
 
 search_api = app.config['SEARCH_API']
-
+HealthCheck(app, '/health')
 
 def get_or_log_error(url):
     try:

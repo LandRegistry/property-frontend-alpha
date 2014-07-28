@@ -11,3 +11,4 @@ itsdangerous==0.24
 requests==2.3.0
 webassets==0.10.1
 wsgiref==0.1.2
+-e git+https://github.com/Runscope/healthcheck.git@9d661a916f3ab630ae21e014758aa2f21fd40097#egg=healthcheck
