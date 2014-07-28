@@ -5,9 +5,11 @@ install:
 - pip install -r requirements.txt
 - pip install -r requirements_test.txt 
 - pip install python-coveralls 
-script: py.test --cov propertyfrontend  tests/ --cov-report=term --cov-report=html 
 env:
 - SETTINGS=config.TestConfig
+script: py.test --cov propertyfrontend  tests/ --cov-report=term --cov-report=html
+after_success:
+  - coveralls
 deploy:
   provider: heroku
   api_key:
