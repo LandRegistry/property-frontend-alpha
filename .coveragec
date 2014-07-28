@@ -1,2 +1,2 @@
 [run]
-omit = static/*
+omit = [static/*,templates/*]
