@@ -1,11 +1,13 @@
 from propertyfrontend.server import app
 import mock
 import unittest
+import requests
 
 from mockresponses import MockProperty
 from mockresponses import Mock404
 from mockresponses import MockSearchResults
 from mockresponses import Mock500
+
 
 class ViewPropertyTestCase(unittest.TestCase):
 
@@ -29,11 +31,28 @@ class ViewPropertyTestCase(unittest.TestCase):
     @mock.patch('requests.get', return_value=MockSearchResults())
     def test_search_results_calls_search_api(self, mock_get):
         search_query = "TN12"
-        self.app.post('/search/results', data=dict(search = search_query))
+        self.app.post('/search/results', data=dict(search=search_query))
         mock_get.assert_called_with('%s/search?query=%s' % (self.search_api, search_query))
 
     @mock.patch('requests.get', return_value=Mock500())
     def test_get_property_preserves_downstream_500(self, mock_get):
         search_query = "TN12"
-        response = self.app.post('/search/results', data=dict(search = search_query))
+        response = self.app.post('/search/results', data=dict(search=search_query))
         assert response.status_code == 500
+
+    @mock.patch('requests.get', side_effect=requests.exceptions.ConnectionError)
+    def test_requests_connection_error_results_in_500(self, mock_get):
+        search_query = "TN12"
+        response = self.app.post('/search/results', data=dict(search=search_query))
+        assert response.status_code == 500
+
+    def test_currency_format(self):
+        from propertyfrontend.server import currency
+
+        assert '1.00' == currency(1)
+        assert '10.00' == currency(10)
+        assert '100.00' == currency(100)
+        assert '1,000.00' == currency(1000)
+        assert '10,000.00' == currency(10000)
+        assert '100,000.00' == currency(100000)
+        # that's enough now, Ed.

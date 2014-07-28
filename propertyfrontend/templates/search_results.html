@@ -11,20 +11,20 @@
         <h1 class="heading-xlarge">Search results</h1>
 
         <div class="full-width"> <!--row -->
-          {% if results[0] %}
+          {% if results %}
           <ul class="results" id="ordered">
-              {% for result in results %}
+              {% for title in results %}
               <li class="result">
                 <h2 class="heading-large">
-                  <a href="/property/{{ results['title_number'] }}">Title Number: {{ result['title_number'] }}</a>
+                  <a href="/property/{{ title.title_number }}">Title Number: {{ title.title_number }}</a>
                 </h2>
                 <div class="meta">
                   <dl>
                     <dt class="visuallyhidden">Address</dt>
-                    <dd id="house_number">{{ result['property']['address']['house_number'] }}</dd>
-                    <dd id="road">{{ result['property']['address']['road'] }}</dd>
-                    <dd id="town">{{ result['property']['address']['town'] }}</dd>
-                    <dd id="postcode">{{ result['property']['address']['postcode'] }}</dd>
+                    <dd id="house_number">{{ title.property.address.house_number }}</dd>
+                    <dd id="road">{{ title.property.address.road }}</dd>
+                    <dd id="town">{{ title.property.address.town }}</dd>
+                    <dd id="postcode">{{ title.property.address.postcode }}</dd>
                   </dl>
                 </div>
               </li>
