@@ -3,8 +3,8 @@ python:
 - '2.7'
 install:
 - pip install -r requirements.txt
-- pip install pytest
-script: py.test
+- pip install -r requirements_test.txt 
+script: py.test --cov propertyfrontend  tests/ --cov-report=term --cov-report=html 
 env:
 - SETTINGS=config.TestConfig
 deploy:
