@@ -1,6 +1,4 @@
 #!/bin/bash
 
-export SETTINGS='config.DevelopmentConfig'
-export SEARCH_API='http://localhost:8003'
-
+source ./environment.sh
 python run_dev.py
