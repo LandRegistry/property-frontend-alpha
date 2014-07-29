@@ -6,6 +6,7 @@ class Config(object):
     SEARCH_API = os.environ.get('SEARCH_API')
     BASIC_AUTH_USERNAME = os.environ.get('BASIC_AUTH_USERNAME')
     BASIC_AUTH_PASSWORD = os.environ.get('BASIC_AUTH_PASSWORD')
+    SERVICE_FRONTEND_URL = os.environ.get('SERVICE_FRONTEND_URL')
 
 class DevelopmentConfig(Config):
     DEBUG = True
@@ -13,6 +14,7 @@ class DevelopmentConfig(Config):
 class TestConfig(DevelopmentConfig):
     TESTING = True
     SEARCH_API='http://localhost:8003'
+    SERVICE_FRONTEND_URL='http://localhost:8007'
 
 class DockerConfig(Config):
     DEBUG = True
