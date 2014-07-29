@@ -14,6 +14,7 @@ class ViewPropertyTestCase(unittest.TestCase):
     def setUp(self):
         app.config['TESTING'] = True
         self.search_api = app.config['SEARCH_API']
+        self.service_api = app.config['SERVICE_FRONTEND_URL']
         self.app = app.test_client()
 
     @mock.patch('requests.get', return_value=MockProperty())
@@ -45,6 +46,13 @@ class ViewPropertyTestCase(unittest.TestCase):
         search_query = "TN12"
         response = self.app.post('/search/results', data=dict(search=search_query))
         assert response.status_code == 500
+
+    @mock.patch('requests.get', return_value=MockProperty())
+    def test_for_service_frontend_link(self, mock_get):
+      title_number = "TN1234567"
+      rv = self.app.get('/property/%s' % title_number)
+      service_frontend_url = '%s/%s/%s' % (self.service_api, 'property', title_number)
+      assert service_frontend_url in rv.data
 
     def test_currency_format(self):
         from propertyfrontend.server import currency
