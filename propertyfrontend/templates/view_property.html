@@ -21,6 +21,16 @@
             <div class="postal-code">{{ title.property.address.postcode }}</div>
         </div>
 
+        <h2 class="heading-large">Tenure</h2>
+            <div class="tenure">
+                <span id="tenure">{{ title.property.tenure }}</span></b></p>
+        </div>
+
+        <h2 class="heading-large">Class of title</h2>
+        <div class="class-of-title">
+            <span id="class-of-title">{{ title.property.class_of_title }}</span></b></p>
+        </div>
+
         {% if title.payment.price_paid %}
             <h2 class="heading-large">Price paid</h2>
             <div class="price_paid">
