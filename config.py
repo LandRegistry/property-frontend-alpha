@@ -6,6 +6,7 @@ class Config(object):
     SEARCH_API = os.environ.get('SEARCH_API')
     BASIC_AUTH_USERNAME = os.environ.get('BASIC_AUTH_USERNAME')
     BASIC_AUTH_PASSWORD = os.environ.get('BASIC_AUTH_PASSWORD')
+    SERVICE_FRONTEND_URL = os.environ.get('SERVICE_FRONTEND_URL')
 
 class DevelopmentConfig(Config):
     DEBUG = True
