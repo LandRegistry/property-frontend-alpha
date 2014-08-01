@@ -1,7 +1,10 @@
-// create a map in the "map" div, set the view to a given place and zoom
-var map = L.map('map');
+var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+	osmAttrib = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+	osm = L.tileLayer(osmUrl, {maxZoom: 18, attribution: osmAttrib});
 
-// add an OpenStreetMap tile layer
-L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(map);
+var map = L.map('map').setView([51.505, -0.159], 15).addLayer(osm);
+
+L.marker([51.504, -0.159])
+	.addTo(map)
+	.bindPopup('A pretty CSS3 popup.<br />Easily customizable.')
+	.openPopup();
