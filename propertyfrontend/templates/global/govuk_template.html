@@ -18,6 +18,10 @@
 
     <link href="{{ asset_path }}stylesheets/govuk-template-print.css?0.8.1" media="print" rel="stylesheet" type="text/css" />
 
+    <!-- Leaflet -->
+    <link rel="stylesheet" href="/javascripts/vendor/leaflet-0.7.3/leaflet.css"/>
+    <script src="{{ asset_path }}/javascripts/vendor/leaflet-0.7.3/leaflet.js"></script>
+
     <!--[if IE 8]>
     <script type="text/javascript">
       (function(){if(window.opera){return;}
@@ -68,15 +72,15 @@
     <div id="global-cookie-message">
       <div class="outer-block">
         <div class="inner-block">
-          
+
             {% block cookie_message %}{% endblock %}
-          
+
         </div>
       </div>
     </div>
     <!--end global-cookie-message-->
 
-    
+
     <header role="banner" id="global-header" class="{% block header_class %}{% endblock %}">
       <div class="header-wrapper">
         <div class="header-global">
@@ -91,7 +95,7 @@
       </div>
     </header>
     <!--end header-->
-    
+
 
     {% block after_header %}{% endblock %}
 
