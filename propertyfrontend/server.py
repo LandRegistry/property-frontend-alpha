@@ -43,7 +43,7 @@ def property_by_title_number(title_number):
     app.logger.info("Found the following title: %s" % json)
     service_frontend_url = '%s/%s' % (app.config['SERVICE_FRONTEND_URL'], 'property')
     return render_template('view_property.html', title=json,
-      service_frontend_url = service_frontend_url)
+        service_frontend_url = service_frontend_url)
 
 @app.route('/search')
 def search():
