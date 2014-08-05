@@ -11,7 +11,6 @@ class PropertyfrontendAuditTestCase(unittest.TestCase):
     use a level that is not 'info'.
     """
     LOGGER = 'logging.Logger.info'
-    ANON_GET_TEMPLATE = "Audit: user=[anon], request=[<Request 'http://localhost%s' [GET]>]"
 
     def setUp(self):
         app.config["TESTING"] = True,
@@ -22,10 +21,12 @@ class PropertyfrontendAuditTestCase(unittest.TestCase):
     def test_audit_get_index_anon(self, mock_logger):
         path = '/'
         self.client.get(path)
-        mock_logger.assert_called_with(self.ANON_GET_TEMPLATE % path)
+        args, kwargs = mock_logger.call_args
+        assert 'Audit: ' in args[0]
 
     @mock.patch(LOGGER)
-    def test_audit_get_registration_anon(self, mock_logger):
+    def test_audit_get_property_anon(self, mock_logger):
         path = '/property/TEST123'
         self.client.get(path)
-        mock_logger.assert_any_call(self.ANON_GET_TEMPLATE % path)
+        # TODO brittle? Indeed!
+        assert 'Audit: ' in mock_logger.call_args_list[0][0][0]
