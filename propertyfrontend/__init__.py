@@ -26,4 +26,5 @@ def asset_path_context_processor():
     return {
       'asset_path': '/static/build/',
       'landregistry_asset_path': '/static/build/'
+      'js_path': '/templates/'
     }
