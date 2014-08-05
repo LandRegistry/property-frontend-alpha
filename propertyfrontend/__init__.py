@@ -25,6 +25,5 @@ app.logger.info("\nConfiguration\n%s\n" % app.config)
 def asset_path_context_processor():
     return {
       'asset_path': '/static/build/',
-      'landregistry_asset_path': '/static/build/',
-      'js_path': '/templates/'
+      'landregistry_asset_path': '/static/build/'
     }
