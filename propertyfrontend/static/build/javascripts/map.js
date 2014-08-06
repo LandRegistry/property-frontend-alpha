@@ -21,8 +21,6 @@ var map = new L.Map('map', {
 openspaceLayer = L.tileLayer.osopenspace("FFB702322FE0714DE0430B6CA40A06C6", {debug: true});
 map.addLayer(openspaceLayer);
 
-map.setView([51.516251, -0.11660500], 9);
-
 //Define name of CRS in GeoJSON using PROJ4
 proj4.defs("urn:ogc:def:crs:EPSG:27700","+proj=tmerc +lat_0=49 +lon_0=-2 +k=0.9996012717 +x_0=400000 +y_0=-100000 +ellps=airy +datum=OSGB36 +units=m +no_defs");
 
@@ -69,7 +67,11 @@ var geojson = {
 };
 
 //Add the GeoJSON to the map
-L.Proj.geoJson(geojson).addTo(map).bindPopup("I am a " + geojson.geometry.type + " called " + geojson.properties.name);
+L.Proj.geoJson(geojson, {
+  color: 'red',
+  fillColor: '#f03',
+  fillOpacity: 0.5
+}).addTo(map).bindPopup("I am a " + geojson.geometry.type + " called " + geojson.properties.name);
 
 //Add a scale control to the map
 L.control.scale().addTo(map);
@@ -83,3 +85,8 @@ function onMapClick(e) {
 }
 
 map.on('click', onMapClick);
+
+//Center map view on geojson polygon - Static now but should be dynamic using fitBounds
+map.setView([51.516251, -0.11660500], 9);
+
+//fitBounds(geojson.coordsToLatLng, 9)
