@@ -8,17 +8,13 @@ from flask import url_for
 from flask import abort
 
 from healthcheck import HealthCheck
+from audit import Audit
 
 import requests
 
 search_api = app.config['SEARCH_API']
 HealthCheck(app, '/health')
-
-
-def audit(sender, **extra):
-    sender.logger.info('Audit: user=[anon], request=[%s]' % request)
-
-request_started.connect(audit, app)
+Audit(app)
 
 
 def get_or_log_error(url):
