@@ -21,7 +21,7 @@ var map = new L.Map('map', {
 openspaceLayer = L.tileLayer.osopenspace("FFB702322FE0714DE0430B6CA40A06C6", {debug: true});
 map.addLayer(openspaceLayer);
 
-map.setView([51.504, -0.159], 9);
+map.setView([51.516251, -0.11660500], 9);
 
 //Define name of CRS in GeoJSON using PROJ4
 proj4.defs("urn:ogc:def:crs:EPSG:27700","+proj=tmerc +lat_0=49 +lon_0=-2 +k=0.9996012717 +x_0=400000 +y_0=-100000 +ellps=airy +datum=OSGB36 +units=m +no_defs");
@@ -41,35 +41,45 @@ var geojson = {
         "coordinates": [
             [
                 [
-                    404439.5558898761,
-                    369899.8484076261
+                    530647,
+                    181419
                 ],
                 [
-                    404440.0558898761,
-                    369899.8484076261
+                    530855,
+                    181500
                 ],
                 [
-                    404440.0558898761,
-                    369900.3484076261
+                    530917,
+                    181351
                 ],
                 [
-                    404439.5558898761,
-                    369900.3484076261
+                    530713,
+                    181266
                 ],
                 [
-                    404439.5558898761,
-                    369899.8484076261
+                    530647,
+                    181419
                 ]
             ]
         ]
     },
     "properties": {
-        "Description": "Polygon"
+        "name": "Lincoln's Inn Fields"
     }
 };
 
 //Add the GeoJSON to the map
-L.Proj.geoJson(geojson).addTo(map);
+L.Proj.geoJson(geojson).addTo(map).bindPopup("I am a " + geojson.geometry.type + " called " + geojson.properties.name);
 
 //Add a scale control to the map
 L.control.scale().addTo(map);
+
+//Add a popup on the geojson feature
+var popup = L.popup();
+
+function onMapClick(e) {
+  popup
+    .openOn(map);
+}
+
+map.on('click', onMapClick);
