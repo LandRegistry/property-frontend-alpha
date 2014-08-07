@@ -39,13 +39,9 @@
         {% endif %}
 
         <h2 clas="heading-large">Title extent</h2>
-        <script src="{{asset_path}}/javascripts/proj4.js"></script><!-- proj4js -->
-        <script src="{{asset_path}}/javascripts/proj4leaflet.js"></script><!-- proj4leaflet -->
-        <script src="{{asset_path}}/javascripts/osopenspace.js"></script><!-- OS OpenSpace layer -->
+
         <div id="map" style="width: 600px; height: 600px">
-          <script type='text/javascript'>
-            var extentData = {{ title.extent | tojson}};
-          </script>
+
           <script src="{{asset_path}}/javascripts/map.js"></script>
         </div>
 
