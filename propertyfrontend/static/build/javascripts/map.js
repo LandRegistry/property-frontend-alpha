@@ -29,7 +29,7 @@ var map = new L.Map('map', {
 });
 
 //New OSOpenSpace layer with API Key
-openspaceLayer = L.tileLayer.osopenspace("FFB702322FE0714DE0430B6CA40A06C6", {debug: true});
+var openspaceLayer = L.tileLayer.osopenspace("FFB702322FE0714DE0430B6CA40A06C6", {debug: true});
 map.addLayer(openspaceLayer);
 
 //Define name of CRS in GeoJSON using PROJ4
@@ -59,6 +59,6 @@ map.on('click', onMapClick);
 //Center map view on geojson polygon
 var bounds = geoJson.getBounds();
 var center = bounds.getCenter();
-map.setView([center.lat, center.lng], 9);
-map.fitBounds(bounds, {maxZoom: 9});
+map.setView([center.lat, center.lng], 9)
+map.fitBounds(bounds, {maxZoom: 9, animate: false});
 
