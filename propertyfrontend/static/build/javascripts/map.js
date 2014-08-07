@@ -35,54 +35,13 @@ map.addLayer(openspaceLayer);
 //Define name of CRS in GeoJSON using PROJ4
 proj4.defs("urn:ogc:def:crs:EPSG:27700","+proj=tmerc +lat_0=49 +lon_0=-2 +k=0.9996012717 +x_0=400000 +y_0=-100000 +ellps=airy +datum=OSGB36 +units=m +no_defs");
 
-//The GeoJSON object, hard coded now but would be parameterised or Jinja-fied
-//A polygon around Lincolns Inn Fields, London.
-var geojson = {
-    "type": "Feature",
-    "crs": {
-        "type": "name",
-        "properties": {
-            "name": "urn:ogc:def:crs:EPSG:27700"
-        }
-    },
-    "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-            [
-                [
-                    530647,
-                    181419
-                ],
-                [
-                    530855,
-                    181500
-                ],
-                [
-                    530917,
-                    181351
-                ],
-                [
-                    530713,
-                    181266
-                ],
-                [
-                    530647,
-                    181419
-                ]
-            ]
-        ]
-    },
-    "properties": {
-        "name": "Lincoln's Inn Fields"
-    }
-};
-
 //Add the GeoJSON to the map
-L.Proj.geoJson(geojson, {
+var geoJson = L.Proj.geoJson(extentData, {
   color: 'red',
   fillColor: '#f03',
   fillOpacity: 0.5
-}).addTo(map).bindPopup("I am a " + geojson.geometry.type + " called " + geojson.properties.name);
+})
+geoJson.addTo(map).bindPopup("I am a " + extentData.geometry.type);
 
 //Add a scale control to the map
 L.control.scale().addTo(map);
@@ -97,7 +56,9 @@ function onMapClick(e) {
 
 map.on('click', onMapClick);
 
-//Center map view on geojson polygon - Static now but should be dynamic using fitBounds
-map.setView([51.516251, -0.11660500], 9);
+//Center map view on geojson polygon
+var bounds = geoJson.getBounds();
+var center = bounds.getCenter();
+map.setView([center.lat, center.lng], 9);
+map.fitBounds(bounds, {maxZoom: 9});
 
-//fitBounds(geojson.coordsToLatLng, 9)
