@@ -3,15 +3,19 @@ from propertyfrontend import app
 from flask import render_template
 from flask import request
 from flask import redirect
+from flask import request_started
 from flask import url_for
 from flask import abort
 
 from healthcheck import HealthCheck
+from audit import Audit
 
 import requests
 
 search_api = app.config['SEARCH_API']
 HealthCheck(app, '/health')
+Audit(app)
+
 
 def get_or_log_error(url):
     try:
@@ -25,14 +29,17 @@ def get_or_log_error(url):
         app.logger.error("Error %s", e)
         abort(500)
 
+
 @app.template_filter()
 def currency(value):
     """Format a comma separated  currency to 2 decimal places."""
     return "{:,.2f}".format(float(value))
 
+
 @app.route('/')
 def index():
     return render_template('search.html')
+
 
 @app.route('/property/<title_number>')
 def property_by_title_number(title_number):
@@ -42,12 +49,16 @@ def property_by_title_number(title_number):
     json = response.json()
     app.logger.info("Found the following title: %s" % json)
     service_frontend_url = '%s/%s' % (app.config['SERVICE_FRONTEND_URL'], 'property')
-    return render_template('view_property.html', title=json,
-      service_frontend_url = service_frontend_url)
+    return render_template(
+        'view_property.html',
+        title=json,
+        service_frontend_url=service_frontend_url)
+
 
 @app.route('/search')
 def search():
     return redirect(url_for('index'))
+
 
 @app.route('/search/results', methods=['POST'])
 def search_results():
@@ -60,9 +71,11 @@ def search_results():
     app.logger.info("Found for the following: %s" % json)
     return render_template('search_results.html', results=json['results'])
 
+
 @app.errorhandler(404)
 def page_not_found(err):
     return render_template('404.html'), 404
+
 
 @app.errorhandler(500)
 def error(err):
@@ -71,9 +84,10 @@ def error(err):
 # could go further and create a catch all that ensures we
 # return nicer page than default for *any* errors?
 
+
 @app.after_request
 def after_request(response):
-    response.headers.add('Content-Security-Policy', "default-src 'self' 'unsafe-inline' data:; img-src *")
+    response.headers.add('Content-Security-Policy', "default-src 'self' 'unsafe-inline' data:")
     response.headers.add('X-Frame-Options', 'deny')
     response.headers.add('X-Content-Type-Options', 'nosniff')
     response.headers.add('X-XSS-Protection', '1; mode=block')
