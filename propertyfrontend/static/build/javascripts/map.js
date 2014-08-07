@@ -15,15 +15,18 @@ var map = new L.Map('map', {
   worldCopyJump: false,
   minZoom: 1,
   maxZoom: 10,
-  zoomControl: false,
-  dragging: false
-});
 
-map.touchZoom.disable();
-map.doubleClickZoom.disable();
-map.scrollWheelZoom.disable();
-map.boxZoom.disable();
-map.keyboard.disable();
+  // controls
+  dragging: false,
+  touchZoom: false,
+  doubleClickZoom: false,
+  scrollWheelZoom: false,
+  boxZoom: false,
+  keyboard: false,
+  tap: false,
+  zoomControl: false,
+  attributionControl: false
+});
 
 //New OSOpenSpace layer with API Key
 openspaceLayer = L.tileLayer.osopenspace("FFB702322FE0714DE0430B6CA40A06C6", {debug: true});
