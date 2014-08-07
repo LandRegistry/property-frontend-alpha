@@ -41,20 +41,10 @@ var geoJson = L.Proj.geoJson(extentData, {
   fillColor: '#f03',
   fillOpacity: 0.5
 })
-geoJson.addTo(map).bindPopup("I am a " + extentData.geometry.type);
+geoJson.addTo(map);
 
 //Add a scale control to the map
 L.control.scale().addTo(map);
-
-//Add a popup on the geojson feature
-var popup = L.popup();
-
-function onMapClick(e) {
-  popup
-    .openOn(map);
-}
-
-map.on('click', onMapClick);
 
 //Center map view on geojson polygon
 var bounds = geoJson.getBounds();
