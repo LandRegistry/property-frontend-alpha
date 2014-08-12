@@ -29,7 +29,7 @@ var map = new L.Map('map', {
 });
 
 //New OSOpenSpace layer with API Key
-var openspaceLayer = L.tileLayer.osopenspace("FFB702322FDF714DE0430B6CA40A06C6", {debug: true});
+var openspaceLayer = L.tileLayer.osopenspace(apiKey, {debug: true});
 map.addLayer(openspaceLayer);
 
 //Define name of CRS in GeoJSON using PROJ4
