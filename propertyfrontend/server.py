@@ -10,7 +10,7 @@ from flask import abort
 from healthcheck import HealthCheck
 from audit import Audit
 
-import requests
+import os, requests
 
 search_api = app.config['SEARCH_API']
 HealthCheck(app, '/health')
@@ -52,6 +52,7 @@ def property_by_title_number(title_number):
     return render_template(
         'view_property.html',
         title=json,
+        apiKey=os.environ.get['OS_API_KEY'],
         service_frontend_url=service_frontend_url)
 
 
