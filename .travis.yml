@@ -3,13 +3,16 @@ python:
 - '2.7'
 install:
 - pip install -r requirements.txt
-- pip install -r requirements_test.txt 
-- pip install python-coveralls 
-script: 
+- pip install -r requirements_test.txt
+- pip install python-coveralls
+script:
 - source ./environment_test.sh
 - py.test --cov propertyfrontend  tests/ --cov-report=term --cov-report=html
 after_success:
   - coveralls --ignore-errors
+env:
+  global:
+  - secure: "oJJRU5sc/UE+9dFdnGL16k/NsnEFluxS3qAYsTuyZpcAcdwjwou2ccx3waC1PDD3WMPgsQD51+1ZhFSgqJ0noHy5LNg3leayDoxY76es5YzWpPzWGFaPPJwZqYxSTcZjcCJne+TK1hpMRc/InLng/u6wLWQY7ZFYfpzoFwv4Ldc="
 deploy:
   provider: heroku
   api_key:
