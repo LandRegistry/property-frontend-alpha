@@ -52,7 +52,7 @@ def property_by_title_number(title_number):
     return render_template(
         'view_property.html',
         title=json,
-        apiKey=os.environ.get['OS_API_KEY'],
+        apiKey=os.environ['OS_API_KEY'],
         service_frontend_url=service_frontend_url)
 
 

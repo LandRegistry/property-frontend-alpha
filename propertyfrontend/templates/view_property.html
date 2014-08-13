@@ -44,7 +44,7 @@
         <div id="map" style="width: 600px; height: 600px">
           <script type='text/javascript'>
             var extentData = {{ title.extent | tojson}};
-            var apiKey = {{ apiKey }};
+            var apiKey = "{{ apiKey }}";
           </script>
           <script src="{{asset_path}}/javascripts/map.js"></script>
         </div>
