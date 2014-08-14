@@ -10,50 +10,56 @@
 
     <div class="inner-block">
 
-        <h1 class="heading-xlarge">
-          Details for title <span class="title_id">{{ title.title_number }}</span>
-        </h1>
+        <h2 class="heading-large">Property details</h2>
+        <div class="grid-wrapper">
+            <div class="grid grid-1-2">
+                <div class="inner-block">
+                    <h1 class="heading-xlarge">{{ title.title_number }}</h1>
 
-        <h2 class="heading-large">Property Address</h2>
+                    <div class="adr lede">
+                        <div class="street-address">{{ title.property.address.house_number }}<br/>{{ title.property.address.road }}</div>
+                        <div class="locality">{{ title.property.address.town }}</div>
+                        <div class="postal-code">{{ title.property.address.postcode }}</div>
+                    </div>
 
-        <div class="adr">
-            <div class="street-address">{{ title.property.address.house_number }}<br/>{{ title.property.address.road }}</div>
-            <div class="locality">{{ title.property.address.town }}</div>
-            <div class="postal-code">{{ title.property.address.postcode }}</div>
-        </div>
+                    <dl>
+                        <dt>Tenure</dt>
+                        <dd>{{ title.property.tenure }}</dd>
+                        <dt>Class of title</dt>
+                        <dd>{{ title.property.class_of_title }}</dd>
+                        {% if title.payment.price_paid %}
+                        <dt>Price paid</dt>
+                        <dd>&pound; {{ title.payment.price_paid | currency }}</dd>
+                        {% endif %}
+                    </dl>
 
-        <h2 class="heading-large">Tenure</h2>
-            <div class="tenure">
-                <span id="tenure">{{ title.property.tenure }}</span></b></p>
-        </div>
-
-        <h2 class="heading-large">Class of title</h2>
-        <div class="class-of-title">
-            <span id="class-of-title">{{ title.property.class_of_title }}</span></b></p>
-        </div>
-
-        {% if title.payment.price_paid %}
-            <h2 class="heading-large">Price paid</h2>
-            <div class="price_paid">
-                <p>Price paid: <b>&pound;<span id="price-paid">{{ title.payment.price_paid | currency }}</span></b></p>
+                </div>
             </div>
-        {% endif %}
+            <div class="grid grid-1-2">
+                <div class="inner-block">
+                    <div id="map" style="width: 100%; height: 300px">
+                      <script type='text/javascript'>
+                        var extentData = {{ title.extent | tojson}};
+                        var apiKey = "{{ apiKey }}";
+                      </script>
+                      <script src="{{asset_path}}/javascripts/map.js"></script>
+                    </div>
+                </div>
+            </div>
+        </div><!-- end grid-wrapper -->
 
-        <h2 clas="heading-large">Title extent</h2>
+        <div class="grid-wrapper">
+            <div class="grid">
+                <div class="inner-block">
+                    <a class="button" href="{{service_frontend_url}}/{{title.title_number}}">View full register</a>
+                    <p class="text">You will need to sign in with GOV.UK to view the full details on the register.</p>
+                </div>
+            </div>
+        </div><!-- end grid-wrapper -->
 
-        <div id="map" style="width: 600px; height: 600px">
-          <script type='text/javascript'>
-            var extentData = {{ title.extent | tojson}};
-            var apiKey = "{{ apiKey }}";
-          </script>
-          <script src="{{asset_path}}/javascripts/map.js"></script>
-        </div>
-
-        <a href="{{service_frontend_url}}/{{title.title_number}}">Login</a> to see more information.
     </div>
 
-  </div>
-
+  </div><!-- end content -->
 </main>
 
 {% endblock %}
