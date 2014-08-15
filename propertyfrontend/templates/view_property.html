@@ -20,10 +20,10 @@
                 <div class="inner-block">
                     <h1 class="heading-xlarge">{{ title.title_number }}</h1>
 
-                    <div class="adr lede">
-                        <div class="street-address">{{ title.property.address.house_number }}<br/>{{ title.property.address.road }}</div>
-                        <div class="locality">{{ title.property.address.town }}</div>
-                        <div class="postal-code">{{ title.property.address.postcode }}</div>
+                    <div itemscope itemtype ="http://schema.org/PostalAddress" class="adr lede">
+                        <div itemprop="streetAddress">{{ title.property.address.house_number }}<br/>{{ title.property.address.road }}</div>
+                        <div itemprop="addressLocality">{{ title.property.address.town }}</div>
+                        <div itemprop="postalCode">{{ title.property.address.postcode }}</div>
                     </div>
 
                     <dl class="inline">
