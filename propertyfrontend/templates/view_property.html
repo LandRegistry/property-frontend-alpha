@@ -13,55 +13,54 @@
     {% include "inc_alpha_banner.html" %}
 
     <div class="inner-block">
-
         <h2 class="heading-large content-title">Property details</h2>
-        <div class="grid-wrapper pw-summary">
-            <div class="grid grid-1-2">
-                <div class="inner-block">
-                    <h1 class="heading-xlarge">{{ title.title_number }}</h1>
-
-                    <div itemscope itemtype ="http://schema.org/PostalAddress" class="adr lede">
-                        <div itemprop="streetAddress">{{ title.property.address.house_number }}<br/>{{ title.property.address.road }}</div>
-                        <div itemprop="addressLocality">{{ title.property.address.town }}</div>
-                        <div itemprop="postalCode">{{ title.property.address.postcode }}</div>
-                    </div>
-
-                    <dl class="inline">
-                        <dt>Tenure</dt>
-                        <dd>{{ title.property.tenure }}</dd>
-                        <dt>Class of title</dt>
-                        <dd>{{ title.property.class_of_title }}</dd>
-                        {% if title.payment.price_paid %}
-                        <dt>Price paid</dt>
-                        <dd>&pound; {{ title.payment.price_paid | currency }}</dd>
-                        {% endif %}
-                    </dl>
-
-                </div>
-            </div>
-            <div class="grid grid-1-2">
-                <div class="inner-block">
-                    <div id="map" style="width: 100%; height: 300px">
-                      <script type='text/javascript'>
-                        var extentData = {{ title.extent | tojson}};
-                        var apiKey = "{{ apiKey }}";
-                      </script>
-                      <script src="{{asset_path}}/javascripts/map.js"></script>
-                    </div>
-                </div>
-            </div>
-        </div><!-- end grid-wrapper -->
-
-        <div class="grid-wrapper">
-            <div class="grid">
-                <div class="inner-block">
-                    <a class="button" href="{{service_frontend_url}}/{{title.title_number}}">View full register</a>
-                    <p class="text">You will need to sign in with GOV.UK to view the full details on the register.</p>
-                </div>
-            </div>
-        </div><!-- end grid-wrapper -->
-
     </div>
+
+    <div class="grid-wrapper pw-summary">
+        <div class="grid grid-1-2">
+            <div class="inner-block">
+                <h1 class="heading-xlarge">{{ title.title_number }}</h1>
+
+                <div itemscope itemtype ="http://schema.org/PostalAddress" class="adr lede">
+                    <div itemprop="streetAddress">{{ title.property.address.house_number }}<br/>{{ title.property.address.road }}</div>
+                    <div itemprop="addressLocality">{{ title.property.address.town }}</div>
+                    <div itemprop="postalCode">{{ title.property.address.postcode }}</div>
+                </div>
+
+                <dl class="inline">
+                    <dt>Tenure</dt>
+                    <dd>{{ title.property.tenure }}</dd>
+                    <dt>Class of title</dt>
+                    <dd>{{ title.property.class_of_title }}</dd>
+                    {% if title.payment.price_paid %}
+                    <dt>Price paid</dt>
+                    <dd>&pound; {{ title.payment.price_paid | currency }}</dd>
+                    {% endif %}
+                </dl>
+
+            </div>
+        </div>
+        <div class="grid grid-1-2">
+            <div class="inner-block">
+                <div id="map" style="width: 100%; height: 300px">
+                  <script type='text/javascript'>
+                    var extentData = {{ title.extent | tojson}};
+                    var apiKey = "{{ apiKey }}";
+                  </script>
+                  <script src="{{asset_path}}/javascripts/map.js"></script>
+                </div>
+            </div>
+        </div>
+    </div><!-- end grid-wrapper -->
+
+    <div class="grid-wrapper">
+        <div class="grid">
+            <div class="inner-block">
+                <a class="button" href="{{service_frontend_url}}/{{title.title_number}}">View full register</a>
+                <p class="text">You will need to sign in with GOV.UK to view the full details on the register.</p>
+            </div>
+        </div>
+    </div><!-- end grid-wrapper -->
 
   </div><!-- end content -->
 </main>
