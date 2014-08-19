@@ -28,17 +28,16 @@
                 <li>
                   <div class="grid-wrapper result">
 
-                    <h3>{{ title.property.address.house_number }} {{ title.property.address.road }}</h3>
+                    <div itemscope itemtype ="http://schema.org/PostalAddress">
+                      <h3 itemprop="streetAddress">{{ title.property.address.house_number }} {{ title.property.address.road }}</h3>
 
-                    <div class="grid grid-1-3">
-                      <div itemscope itemtype ="http://schema.org/PostalAddress">
-                      <div class="hidden" itemprop="streetAddress">{{ title.property.address.house_number }} {{ title.property.address.road }}</div>
-                      <div itemprop="addressLocality">{{ title.property.address.town }}</div>
-                      <div itemprop="postalCode">{{ title.property.address.postcode }}</div>
+                      <div class="grid grid-1-3">
+                        <div itemprop="addressLocality">{{ title.property.address.town }}</div>
+                        <div itemprop="postalCode">{{ title.property.address.postcode }}</div>
+                        <p>
+                          <a href="/property/{{ title.title_number }}">View full details</a>
+                        </p>
                       </div>
-                      <p>
-                        <a href="/property/{{ title.title_number }}">View full details</a>
-                      </p>
                     </div>
 
                     <div class="grid grid-1-2"> 
@@ -47,7 +46,6 @@
 
                   </div>
                 </li>
-
                 {% endfor %}
               </ul>
 
