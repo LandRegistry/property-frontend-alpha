@@ -40,7 +40,6 @@ var geoJson = L.Proj.geoJson(extentData, {
   color: 'red',
   fillOpacity: 0
 })
-
 geoJson.addTo(map);
 
 //Add a scale control to the map
@@ -49,5 +48,5 @@ L.control.scale().addTo(map);
 //Center map view on geojson polygon
 var bounds = geoJson.getBounds();
 var center = bounds.getCenter();
-map.setView([center.lat, center.lng], 10)
-map.fitBounds(bounds, {maxZoom: 10, animate: false});
+map.setView([center.lat, center.lng], 9)
+map.fitBounds(bounds, {maxZoom: 9, animate: false});
