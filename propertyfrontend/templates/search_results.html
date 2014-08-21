@@ -12,17 +12,14 @@
 
             <div class="inner-block">
                 <h1 class="heading-xlarge">Search results</h1>
-            </div>
-
-            <div class="results">
 
                 {% if results %}
 
-                <ul>
+                <ul class="results-list">
                     {% for title in results %}
-                    <li class="grid-wrapper" itemscope itemtype ="http://schema.org/PostalAddress">
+                    <li class="result" itemscope itemtype="http://schema.org/PostalAddress">
                         <h2 class="grid lede" itemprop="streetAddress">{{ title.property.address.house_number }} {{ title.property.address.road }}</h2>
-                        <div class="grid grid-1-3">
+                        <div class="grid grid-1-4">
                             <span itemprop="addressLocality">{{ title.property.address.town }}</span><br>
                             <span itemprop="postalCode">{{ title.property.address.postcode }}</span>
                             <p>
