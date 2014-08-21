@@ -1,66 +1,49 @@
 {% extends "propertyfrontend_base.html" %}
 
 {% block head_additionals %}
-<link href="{{ landregistry_asset_path }}stylesheets/property-frontend-sr-shame.css" media="screen" rel="stylesheet" type="text/css">
+    <link href="{{ landregistry_asset_path }}stylesheets/property-frontend-sr-shame.css" media="screen" rel="stylesheet" type="text/css">
 {% endblock %}
 
 {% block content %}
-  <main id="wrapper" role="main">
-    <div id="content">
+    <main id="wrapper" role="main">
+        <div id="content">
 
-      {% include "inc_alpha_banner.html" %}
+            {% include "inc_alpha_banner.html" %}
 
-      <div class="grid-wrapper">
-        <div class="grid">
+            <div class="inner-block">
+                <h1 class="heading-xlarge">Search results</h1>
+            </div>
 
-          <div class="inner-block">
+            <div class="results">
 
-            <h1 class="heading-xlarge">Search results</h1>
+                {% if results %}
 
-            <div class="results-list">
+                <ul>
+                    {% for title in results %}
+                    <li class="grid-wrapper" itemscope itemtype ="http://schema.org/PostalAddress">
+                        <h2 class="grid lede" itemprop="streetAddress">{{ title.property.address.house_number }} {{ title.property.address.road }}</h2>
+                        <div class="grid grid-1-3">
+                            <span itemprop="addressLocality">{{ title.property.address.town }}</span><br>
+                            <span itemprop="postalCode">{{ title.property.address.postcode }}</span>
+                            <p>
+                                <a href="/property/{{ title.title_number }}">View full details</a>
+                            </p>
+                        </div>
+                        <div class="grid grid-1-2"> 
+                            Title number: {{ title.title_number }}
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
 
-              {% if results %}
-                
-              <h2 class="hidden">Addresses</h2>
+                {% else %}
 
-              <ul>
-                {% for title in results %}
-                <li>
-                  <div class="grid-wrapper result">
-
-                    <div itemscope itemtype ="http://schema.org/PostalAddress">
-                      <h3 itemprop="streetAddress">{{ title.property.address.house_number }} {{ title.property.address.road }}</h3>
-
-                      <div class="grid grid-1-3">
-                        <div itemprop="addressLocality">{{ title.property.address.town }}</div>
-                        <div itemprop="postalCode">{{ title.property.address.postcode }}</div>
-                        <p>
-                          <a href="/property/{{ title.title_number }}">View full details</a>
-                        </p>
-                      </div>
-                    </div>
-
-                    <div class="grid grid-1-2"> 
-                      Title number: {{ title.title_number }}                      
-                    </div>
-
-                  </div>
-                </li>
-                {% endfor %}
-              </ul>
-
-              {% else %}
                 <p>No results found</p>
-              {% endif %}
+
+                {% endif %}
 
             </div>
 
-
-          </div>
-
         </div>
-      </div>
-    </div>
-  </main>
-
+    </main>
 {% endblock %}
