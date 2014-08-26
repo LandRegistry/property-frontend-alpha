@@ -2,9 +2,10 @@ from propertyfrontend.server import app
 import mock
 import unittest
 import requests
+import responses
 
 from stubresponses import title
-from stubresponses import search_results
+from stubresponses import search_results, test_two_search_results
 
 class ViewPropertyTestCase(unittest.TestCase):
 
@@ -73,7 +74,34 @@ class ViewPropertyTestCase(unittest.TestCase):
         assert '1,000.00' == currency(1000)
         assert '10,000.00' == currency(10000)
         assert '100,000.00' == currency(100000)
-        # that's enough now, Ed.
+
+
+    @responses.activate
+    def test_for_two_search_results(self):
+        #Mock a response, as though JSON is coming back from SEARCH_API
+        TITLE_NUMBER = "TN1234567"
+        search_api_url = "%s/%s" % (self.search_api, "search")
+        search_url = "%s?query=%s" % (search_api_url, TITLE_NUMBER)
+        app.logger.info(search_url)
+
+        #match_querystring essential when a query specified.
+        #default value of match_querystring is false.  Relies on query being absent.
+        responses.add(responses.GET, search_url, match_querystring = True,
+        body = test_two_search_results, status = 200, content_type='application/json')
+
+        rv = self.app.post('search/results', data={'search': TITLE_NUMBER},
+          follow_redirects=True)
+        app.logger.info(rv.data)
+        assert rv.status_code == 200
+        assert "TN1234567" in rv.data
+        assert "12 High St" in rv.data
+        assert "Sometown" in rv.data
+        assert "ABC 123" in rv.data
+        assert "TN7654321" in rv.data
+        assert "10 Low St" in rv.data
+        assert "Funtown" in rv.data
+        assert "CAB 321" in rv.data
+
 
     def health(self):
         response = self.app.get('/health')
