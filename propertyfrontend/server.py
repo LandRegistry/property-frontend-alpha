@@ -1,4 +1,5 @@
 from propertyfrontend import app
+from datetime import datetime
 
 from flask import render_template
 from flask import request
@@ -35,6 +36,10 @@ def currency(value):
     """Format a comma separated  currency to 2 decimal places."""
     return "{:,.2f}".format(float(value))
 
+@app.template_filter()
+def format_date_YMD(value):
+    new_date = datetime.strptime(value, '%Y-%m-%d')
+    return new_date.strftime('%d %B %Y')
 
 @app.route('/')
 def index():

@@ -44,15 +44,39 @@
                     <dl class="inline">
                         {% for lease in title.leases %}
                             <dt>Lease Date</dt>
-                            <dd>{{ lease.lease_date }}</dd>
+                            <dd>{{ lease.lease_date | format_date_YMD }}</dd>
                             <dt>Term</dt>
-                            <dd>{{ lease.lease_term }} years from {{ lease.lease_from }}</dd>
+                            <dd>{{ lease.lease_term }} years from {{ lease.lease_from | format_date_YMD }}</dd>
 
                             <dt>Parties</dt>
                             <dd>1. {{ lease.lessor_name }} <br/>
                             2. {{ lease.lessee_name }}</dd>
-                        {% endfor %}
+
                     </dl>
+                    <h4>Clauses</h4>
+
+                    {% if lease.lease_easements == True %}
+                        <p>Unless otherwise mentioned the title includes any legal easements granted
+                            by the registered lease(s) but is subject to any rights that it reserves,
+                            so far as those easements and rights exist and benefit or
+                            affect the registered land.
+                        </p><br/>
+                    {% endif %}
+
+                    {% if lease.alienation_clause == True %}
+                        <p>There are excepted from the effect of registration all estates. rights,
+                            interests, powers and remedies arising upon, or by reason of, any
+                            dealing made in breach of the prohibition or restriction against
+                            dealings therewith inter vivos contained in the Lease.
+                        </p><br/>
+                    {% endif %}
+
+                    {% if lease.title_registered == True %}
+                        <p>The registered Lease is made pursuant to Part V of the Housing Act 1985
+                            and the land has the benefit of and is subject to the easements and rights
+                            specified in paragraph 2 of Schedule 6 of the said Act.</p><br/>
+                    {% endif %}
+                {% endfor %}
                 {% endif %}
             </div>
         </div>
