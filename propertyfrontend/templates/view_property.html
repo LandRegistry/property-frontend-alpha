@@ -38,6 +38,22 @@
                     {% endif %}
                 </dl>
 
+                {% if title.property.tenure == 'Leasehold' %}
+                    <br/>
+                    <h3>Lease Details</h3>
+                    <dl class="inline">
+                        {% for lease in title.leases %}
+                            <dt>Lease Date</dt>
+                            <dd>{{ lease.lease_date }}</dd>
+                            <dt>Term</dt>
+                            <dd>{{ lease.lease_term }} years from {{ lease.lease_from }}</dd>
+
+                            <dt>Parties</dt>
+                            <dd>1. {{ lease.lessor_name }} <br/>
+                            2. {{ lease.lessee_name }}</dd>
+                        {% endfor %}
+                    </dl>
+                {% endif %}
             </div>
         </div>
         <div class="grid grid-1-2">
