@@ -21,10 +21,21 @@
             <div class="inner-block">
                 <h1 class="heading-xlarge">{{ title.title_number }}</h1>
 
-                <div itemscope itemtype ="http://schema.org/PostalAddress" class="adr lede">
-                    <div itemprop="streetAddress">{{ title.property.address.house_number }}<br/>{{ title.property.address.road }}</div>
-                    <div itemprop="addressLocality">{{ title.property.address.town }}</div>
-                    <div itemprop="postalCode">{{ title.property.address.postcode }}</div>
+                <div itemscope itemtype="http://schema.org/PostalAddress">
+                            <span itemprop="streetAddress">
+                                {{ title.property.address.address_line_1 }}<br>
+                                {% if title.property.address.address_line_2 %}
+                                    {{ title.property.address.address_line_2 }} <br>
+                                {% endif %}
+                                {% if title.property.address.address_line_3 %}
+                                    {{ title.property.address.address_line_3 }}<br>
+                                 {% endif %}
+                                {% if title.property.address.address_line_4 %}
+                                    {{ title.property.address.address_line_4 }}<br>
+                                 {% endif %}
+                            </span>
+                    <span itemprop="addressLocality">{{ title.property.address.city }}</span><br>
+                    <span itemprop="postalCode">{{ title.property.address.postcode }}</span>
                 </div>
 
                 <dl class="inline">
