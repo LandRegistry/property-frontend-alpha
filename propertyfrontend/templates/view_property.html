@@ -40,15 +40,58 @@
 
                 <dl class="inline">
                     <dt>Tenure</dt>
-                    <dd>{{ title.property.tenure }}</dd>
+                    <dd id="tenure">{{ title.property.tenure }}</dd>
                     <dt>Class of title</dt>
-                    <dd>{{ title.property.class_of_title }}</dd>
+                    <dd id="class">{{ title.property.class_of_title }}</dd>
                     {% if title.payment.price_paid %}
                     <dt>Price paid</dt>
-                    <dd>&pound; {{ title.payment.price_paid | currency }}</dd>
+                    <dd id="pricePaid">&pound; {{ title.payment.price_paid | currency }}</dd>
                     {% endif %}
                 </dl>
 
+                {% if title.property.tenure == 'Leasehold' %}
+                    <br/>
+                    <h3>Lease Details</h3>
+                    <dl class="inline">
+                        {% for lease in title.leases %}
+                            <dt>Lease Date</dt>
+                            <dd id="leaseDate">{{ lease.lease_date | format_date_YMD }}</dd>
+                            <dt>Term</dt>
+                            <dd id="leaseTerm">{{ lease.lease_term }} years from {{ lease.lease_from | format_date_YMD }}</dd>
+
+                            <dt>Parties</dt>
+                            <dd id="parties">1. {{ lease.lessor_name }}
+                                {% if lease.lessee_name %}
+                                    <br/>
+                                    2. {{ lease.lessee_name }}
+                                {% endif %}
+                            </dd>
+                    </dl>
+                    <h4>Clauses</h4>
+
+                    {% if lease.lease_easements == True %}
+                        <p id="easementClause">Unless otherwise mentioned the title includes any legal easements granted
+                            by the registered lease(s) but is subject to any rights that it reserves,
+                            so far as those easements and rights exist and benefit or
+                            affect the registered land.
+                        </p><br/>
+                    {% endif %}
+
+                    {% if lease.alienation_clause == True %}
+                        <p id="alienationClause">There are excepted from the effect of registration all estates. rights,
+                            interests, powers and remedies arising upon, or by reason of, any
+                            dealing made in breach of the prohibition or restriction against
+                            dealings therewith inter vivos contained in the Lease.
+                        </p><br/>
+                    {% endif %}
+
+                    {% if lease.title_registered == True %}
+                        <p id="titleRegisteredClause">The registered Lease is made pursuant to Part V of the Housing Act 1985
+                            and the land has the benefit of and is subject to the easements and rights
+                            specified in paragraph 2 of Schedule 6 of the said Act.</p><br/>
+                    {% endif %}
+                {% endfor %}
+                {% endif %}
             </div>
         </div>
         <div class="grid grid-1-2">
