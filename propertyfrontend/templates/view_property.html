@@ -49,10 +49,11 @@
                             <dd id="leaseTerm">{{ lease.lease_term }} years from {{ lease.lease_from | format_date_YMD }}</dd>
 
                             <dt>Parties</dt>
-                            <dd id="parties">1. {{ lease.lessor_name }}
+                            <dd id="parties">1. {{ lease.lessor_name }}<br/>
                                 {% if lease.lessee_name %}
-                                    <br/>
                                     2. {{ lease.lessee_name }}
+                                {% else %}
+                                    2. The names of this party are only available if you view the full register of title
                                 {% endif %}
                             </dd>
                     </dl>
