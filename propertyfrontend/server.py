@@ -73,9 +73,15 @@ def search_results():
     search_url = "%s?query=%s" % (search_api_url, query)
     app.logger.info("URL requested %s" % search_url)
     response = get_or_log_error(search_url)
-    json = response.json()
-    app.logger.info("Found for the following: %s" % json)
-    return render_template('search_results.html', results=json['results'])
+    result_json = response.json()
+    app.logger.info("Found for the following %s result: %s"
+      % (len(result_json['results']), result_json))
+    one_result = len(result_json['results']) == 1
+    if one_result:
+      title = result_json['results'][0]
+      return property_by_title_number(title['title_number'])
+    else:
+      return render_template('search_results.html', results=result_json['results'])
 
 
 @app.errorhandler(404)

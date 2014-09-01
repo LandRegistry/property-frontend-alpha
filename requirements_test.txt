@@ -5,3 +5,4 @@ mock==1.0.1
 py==1.4.20
 pytest==2.5.2
 pytest-cov==1.7.0
+responses==0.2.2
