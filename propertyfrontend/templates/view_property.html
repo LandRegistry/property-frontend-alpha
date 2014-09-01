@@ -65,7 +65,7 @@
                             </dd>
                     </dl>
 
-                    {% if lease.lease_easements == True and lease.alienation_clause == True and lease.title_registered == True %}
+                    {% if lease.lease_easements == True or lease.alienation_clause == True or lease.title_registered == True %}
                     <h4>Clauses</h4>
                     {% endif %}
 
