@@ -34,7 +34,7 @@
                     <span itemprop="postalCode">{{ title.property.address.postcode }}</span>
                 </div>
 
-                <dl class="inline">
+                <dl class="definition-tabular">
                     <dt>Tenure</dt>
                     <dd id="tenure">{{ title.property.tenure }}</dd>
                     <dt>Class of title</dt>
@@ -50,7 +50,7 @@
                     <h3>Lease Details</h3>
                     <dd>Short particulars of the lease(s) (or under-lease(s)) under which the land is held:</dd>
                     <br/>
-                    <dl class="inline">
+                    <dl class="definition-tabular">
                         {% for lease in title.leases %}
                             <dt>Lease Date</dt>
                             <dd id="leaseDate">{{ lease.lease_date | format_date_YMD }}</dd>
