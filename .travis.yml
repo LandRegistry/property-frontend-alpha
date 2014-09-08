@@ -14,9 +14,9 @@ script:
 after_success:
   - coveralls --ignore-errors
 env:
-  - SETTINGS='config.TestConfig'
   global:
   - secure: "oJJRU5sc/UE+9dFdnGL16k/NsnEFluxS3qAYsTuyZpcAcdwjwou2ccx3waC1PDD3WMPgsQD51+1ZhFSgqJ0noHy5LNg3leayDoxY76es5YzWpPzWGFaPPJwZqYxSTcZjcCJne+TK1hpMRc/InLng/u6wLWQY7ZFYfpzoFwv4Ldc="
+  - SETTINGS='config.TestConfig'
 deploy:
   provider: heroku
   api_key:
