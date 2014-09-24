@@ -6,36 +6,44 @@
 
             {% include "inc_alpha_banner.html" %}
 
-            <div class="inner-block">
+            <div id="global-breadcrumb">
+                <ol role="breadcrumbs">
+                    <li><a href="https://www.gov.uk">Home</a></li>
+                </ol>
+            </div>
 
-                <div class="text">
+            <div class="outer-block">
+                <div class="inner-block">
 
-                    <h1 class="heading-xlarge">
-                        Find property information
-                    </h1>
+                    <div class="text">
 
-                    <p class="lede">Find out details about a property, such as:</p>
+                        <h1 class="heading-xlarge">
+                            Find property information
+                        </h1>
 
-                    <ul class="list-bullet">
-                        <li>the Land Registry title number</li>
-                        <li>prices paid for the property in the past</li>
-                        <li>a map of the property</li>
-                    </ul>
+                        <p class="lede">Find out details about a property, such as:</p>
+
+                        <ul class="list-bullet">
+                            <li>the Land Registry title number</li>
+                            <li>prices paid for the property in the past</li>
+                            <li>a map of the property</li>
+                        </ul>
+
+                    </div>
+
+                    <form action="/search/results" method="post" class="form">
+                        <div class="form-group">
+                            <label class="form-label-bold" for="search-terms">Search the Land Registry</label>
+                            <p class="form-hint">E.g. title number</p>
+                            <input type="text" class="form-control" name="search" id="search-terms" />
+                        </div>
+
+                        <div class="form-group">
+                            <button type="submit" class="button">Search</button>
+                        </div>
+                    </form>
 
                 </div>
-
-                <form action="/search/results" method="post" class="form">
-                    <div class="form-group">
-                        <label class="form-label-bold" for="search-terms">Search the Land Registry</label>
-                        <p class="form-hint">E.g. title number</p>
-                        <input type="text" class="form-control" name="search" id="search-terms" />
-                    </div>
-
-                    <div class="form-group">
-                        <button type="submit" class="button">Search</button>
-                    </div>
-                </form>
-
             </div>
 
         </div>
