@@ -10,6 +10,14 @@
 
                 {% if results %}
 
+                <form action="/search/results" method="get" class="form">
+                    <div class="form-group">
+                        <label class="form-label-bold" for="search-terms">Search results for</label>
+                        <input type="text" class="form-control" name="search" id="search-terms" value={{query}} />
+                        <button type="submit" class="button">Search</button>
+                    </div>
+                </form>
+
                 <ul class="results-list">
                     {% for title in results %}
                     <li class="result" itemscope itemtype="http://schema.org/PostalAddress">
