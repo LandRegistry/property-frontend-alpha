@@ -17,7 +17,6 @@ search_api = app.config['SEARCH_API']
 HealthCheck(app, '/health')
 Audit(app)
 
-
 def get_or_log_error(url):
     try:
         response = requests.get(url)
@@ -65,10 +64,9 @@ def property_by_title_number(title_number):
 def search():
     return redirect(url_for('index'))
 
-
-@app.route('/search/results', methods=['POST'])
+@app.route('/search/results', methods=['GET'])
 def search_results():
-    query = request.form['search']
+    query = request.args['search']
     search_api_url = "%s/%s" % (search_api, 'search')
     search_url = "%s?query=%s" % (search_api_url, query)
     app.logger.info("URL requested %s" % search_url)
@@ -77,11 +75,8 @@ def search_results():
     app.logger.info("Found for the following %s result: %s"
       % (len(result_json['results']), result_json))
     one_result = len(result_json['results']) == 1
-    if one_result:
-      title = result_json['results'][0]
-      return property_by_title_number(title['title_number'])
-    else:
-      return render_template('search_results.html', results=result_json['results'])
+
+    return render_template('search_results.html', results=result_json['results'], query=query)
 
 
 @app.errorhandler(404)

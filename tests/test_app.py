@@ -36,7 +36,7 @@ class ViewPropertyTestCase(unittest.TestCase):
     @mock.patch('requests.get', returns=search_results)
     def test_search_results_calls_search_api(self, mock_get):
         search_query = "TN12"
-        self.app.post('/search/results', data=dict(search=search_query))
+        response = self.app.get('/search/results?search=%s' % search_query)
         mock_get.assert_called_with('%s/search?query=%s' % (self.search_api, search_query))
 
     @mock.patch('requests.get')
@@ -46,13 +46,13 @@ class ViewPropertyTestCase(unittest.TestCase):
         mock_response.raise_for_status.side_effect = requests.exceptions.HTTPError
         mock_get.return_value = mock_response
         search_query = "TN12"
-        response = self.app.post('/search/results', data=dict(search=search_query))
+        response = self.app.get('/search/results?search=%s' % search_query)
         assert response.status_code == 500
 
     @mock.patch('requests.get', side_effect=requests.exceptions.ConnectionError)
     def test_requests_connection_error_results_in_500(self, mock_get):
         search_query = "TN12"
-        response = self.app.post('/search/results', data=dict(search=search_query))
+        response = self.app.get('/search/results?search=%s' % search_query)
         assert response.status_code == 500
 
     @mock.patch('requests.get')
@@ -89,7 +89,7 @@ class ViewPropertyTestCase(unittest.TestCase):
         responses.add(responses.GET, search_url, match_querystring = True,
         body = test_two_search_results, status = 200, content_type='application/json')
 
-        rv = self.app.post('search/results', data={'search': TITLE_NUMBER},
+        rv = self.app.get('search/results?search=%s' % TITLE_NUMBER,
           follow_redirects=True)
         app.logger.info(rv.data)
         assert rv.status_code == 200
