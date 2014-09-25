@@ -1,5 +1,7 @@
 {% extends "propertyfrontend_base.html" %}
 
+{% block page_title %}Find a property - GOV.UK{% endblock %}
+
 {% block content %}
     <main id="wrapper" role="main">
         <div id="content">
@@ -18,23 +20,31 @@
                     <div class="text">
 
                         <h1 class="heading-xlarge">
-                            Find property information
+                            Find a property
                         </h1>
 
-                        <p class="lede">Find out details about a property, such as:</p>
+                        <p class="lede">Find out useful information about a property, including:</p>
 
                         <ul class="list-bullet">
-                            <li>the Land Registry title number</li>
-                            <li>prices paid for the property in the past</li>
-                            <li>a map of the property</li>
+                            <li>access to Land Registry title details</li>
+                            <li>a map showing the extent of the property</li>
+                            <li>the property’s energy performance certificate</li>
+                            <li>local council information</li>
+                            <li>flood risk</li>
                         </ul>
 
+                    </div>
 
-                <form action="/search/results" method="get" class="form">
-                    <div class="form-group">
-                        <label class="form-label-bold" for="search-terms">Search the Land Registry</label>
-                        <p class="form-hint">E.g. title number</p>
-                        <input type="text" class="form-control" name="search" id="search-terms" />
+                    <form action="/search/results" method="get" class="form">
+                        <div class="form-group">
+                            <label class="form-label-bold" for="search-terms">
+                                Search for a property
+                                <span class="form-hint">
+                                    You can use various terms such as a postcode or Land Registry title number
+                                </span>
+                            </label>
+                            <input type="text" class="form-control" name="search" id="search-terms" />
+                        </div>
 
                         <div class="form-group">
                             <button type="submit" class="button">Search</button>
