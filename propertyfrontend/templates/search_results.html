@@ -15,33 +15,33 @@
 
             <div class="inner-block">
 
-                {% if results %}
-
                 <form action="/search/results" method="get" class="form">
                     <div class="form-group">
-                        <label class="form-label-bold" for="search-terms">Search results for</label>
+                        <label for="search-terms">
+                            <h1 class="heading-medium">
+                                Search results for
+                            </h1>
+                        </label>
                         <input type="text" class="form-control" name="search" id="search-terms" value={{query}} />
                         <button type="submit" class="button">Search</button>
                     </div>
                 </form>
 
+                {% if results %}
+
                 <ul class="results-list">
                     {% for title in results %}
                     <li class="result" itemscope itemtype="http://schema.org/PostalAddress">
-                        <h2 class="grid lede" itemprop="streetAddress">{{ title.property.address.house_number }} {{ title.property.address.road }}</h2>
+                        <h2 class="grid heading-medium" itemprop="streetAddress"><a href="/property/{{ title.title_number }}">{{ title.property.address.house_number }} {{ title.property.address.road }}</a></h2>
                         <div class="grid grid-1-4">
-                            <p>
-                                <span itemprop="addressLocality">{{ title.property.address.town }}</span><br>
-                                <span itemprop="postalCode">{{ title.property.address.postcode }}</span>
-                            </p>
-                            <p>
-                                <a href="/property/{{ title.title_number }}">View full details</a>
-                            </p>
+                            <span itemprop="addressLocality">{{ title.property.address.town }}</span><br>
+                            <span itemprop="postalCode">{{ title.property.address.postcode }}</span>
                         </div>
                         <div class="grid grid-1-2">
-                            <p>
-                                Title number: {{ title.title_number }}
-                            </p>
+                            <dl class="definition-tabular">
+                                <dt>Title number</dt>
+                                <dd>{{ title.title_number }}</dd>
+                            </dl>
                         </div>
                     </li>
                     {% endfor %}
@@ -50,8 +50,7 @@
                 {% else %}
 
                 <div class="text">
-                    <h1 class="heading-large">Sorry, no results found</h1>
-                    <p>Please try <a href="/">searching again</a> using different terms</p>
+                    <p>Sorry, no results have been found. Please try <a href="#search-terms">searching again</a> using different terms.</p>
                 </div>
 
                 {% endif %}
