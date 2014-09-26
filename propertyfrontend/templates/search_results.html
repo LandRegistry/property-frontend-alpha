@@ -32,18 +32,36 @@
                 <ul class="results-list">
                     {% for title in results %}
                     <li class="result" itemscope itemtype="http://schema.org/PostalAddress">
-                        <h2 class="grid heading-medium" itemprop="streetAddress"><a href="/property/{{ title.title_number }}">{{ title.property.address.house_number }} {{ title.property.address.road }}</a></h2>
+
+                        <h2 class="grid heading-medium">
+                            <a href="/property/{{ title.title_number }}">
+                                {{ title.property.address.address_line_1 }} {{ title.property.address.address_line_2 }}
+                            </a>
+                        </h2>
+
                         <div class="grid grid-1-4">
-                            <span itemprop="addressLocality">{{ title.property.address.town }}</span><br>
+                            <span itemprop="streetAddress">
+                                <span class="visuallyhidden">
+                                    {{ title.property.address.address_line_1 }} {{ title.property.address.address_line_2 }}
+                                </span>
+                                {% if title.property.address.address_line_3 %}
+                                    {{ title.property.address.address_line_3 }}<br>
+                                {% endif %}
+                                {% if title.property.address.address_line_4 %}
+                                    {{ title.property.address.address_line_4 }}<br>
+                                {% endif %}
+                            </span>
+                            <span itemprop="addressLocality">{{ title.property.address.city }}</span><br>
                             <span itemprop="postalCode">{{ title.property.address.postcode }}</span>
-                            <p><a href="/property/{{ title.title_number }}">View property</a></p>
                         </div>
+
                         <div class="grid grid-1-2">
                             <dl class="definition-tabular">
                                 <dt>Title number</dt>
                                 <dd>{{ title.title_number }}</dd>
                             </dl>
                         </div>
+
                         <div class="grid grid-1-4">
                             <img src="http://placehold.it/240x160" alt="Just a placeholder">
                         </div>
