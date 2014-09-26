@@ -1,5 +1,6 @@
 {% extends "propertyfrontend_base.html" %}
-{% include "global/map_includes.html" %}
+
+{% block page_title %}Property details for {{ title.title_number }} - GOV.UK{% endblock %}
 
 {% block content %}
 
@@ -15,115 +16,107 @@
         </ol>
     </div>
 
-    <div class="inner-block">
-        <h2 class="heading-prefix">Property details</h2>
+    <div class="outer-block">
+        <div class="inner-block">
+            <h1 class="heading-prefix">Property details</h1>
+        </div>
     </div>
 
-    <div class="grid-wrapper pw-summary">
+    <div class="grid-wrapper">
+
         <div class="grid grid-1-2">
             <div class="inner-block">
-                <h1 class="heading-xlarge">{{ title.title_number }}</h1>
 
-                <div itemscope itemtype="http://schema.org/PostalAddress">
-                            <span itemprop="streetAddress">
-                                {{ title.property.address.address_line_1 }}<br>
-                                {% if title.property.address.address_line_2 %}
-                                    {{ title.property.address.address_line_2 }} <br>
-                                {% endif %}
-                                {% if title.property.address.address_line_3 %}
-                                    {{ title.property.address.address_line_3 }}<br>
-                                 {% endif %}
-                                {% if title.property.address.address_line_4 %}
-                                    {{ title.property.address.address_line_4 }}<br>
-                                 {% endif %}
-                            </span>
+                <h2 class="heading-large collapse-top" itemscope itemtype="http://schema.org/PostalAddress">
+                    <span itemprop="streetAddress">
+                        {{ title.property.address.address_line_1 }}&nbsp;
+                        {% if title.property.address.address_line_2 %}
+                            {{ title.property.address.address_line_2 }}
+                        {% endif %}<br>
+                        {% if title.property.address.address_line_3 %}
+                            {{ title.property.address.address_line_3 }}<br>
+                         {% endif %}
+                        {% if title.property.address.address_line_4 %}
+                            {{ title.property.address.address_line_4 }}<br>
+                         {% endif %}
+                    </span>
                     <span itemprop="addressLocality">{{ title.property.address.city }}</span><br>
                     <span itemprop="postalCode">{{ title.property.address.postcode }}</span>
-                </div>
+                </h2>
 
                 <dl class="definition-tabular">
-                    <dt>Tenure</dt>
-                    <dd id="tenure">{{ title.property.tenure }}</dd>
-                    <dt>Class of title</dt>
-                    <dd id="class">{{ title.property.class_of_title }}</dd>
+                    <dt>Property type</dt>
+                    <dd>****</dd>
+
+                    <dt>Title number</dt>
+                    <dd>{{ title.title_number }}</dd>
+
+                    <dt>Title quality</dt>
+                    <dd>{{ title.property.class_of_title }}</dd>
+
+                    <dt>Tenure type</dt>
+                    <dd>{{ title.property.tenure }}</dd>
+
                     {% if title.payment.price_paid %}
                     <dt>Price paid</dt>
-                    <dd id="pricePaid">&pound; {{ title.payment.price_paid | currency }}</dd>
+                    <dd>&pound; {{ title.payment.price_paid | currency }}</dd>
                     {% endif %}
+
+                    <dt>Council</dt>
+                    <dd><a href="#">****</a></dd>
                 </dl>
-
-                {% if title.property.tenure == 'Leasehold' %}
-                    <br/>
-                    <h3>Lease Details</h3>
-                    <dd>Short particulars of the lease(s) (or under-lease(s)) under which the land is held:</dd>
-                    <br/>
-                    <dl class="definition-tabular">
-                        {% for lease in title.leases %}
-                            <dt>Lease Date</dt>
-                            <dd id="leaseDate">{{ lease.lease_date | format_date_YMD }}</dd>
-                            <dt>Term</dt>
-                            <dd id="leaseTerm">{{ lease.lease_term }} years from {{ lease.lease_from | format_date_YMD }}</dd>
-
-                            <dt>Parties</dt>
-                            <dd id="parties">1. {{ lease.lessor_name }}<br/>
-                                {% if lease.lessee_name %}
-                                    2. {{ lease.lessee_name }}
-                                {% else %}
-                                    2. The names of this party are only available if you view the full register of title
-                                {% endif %}
-                            </dd>
-                    </dl>
-
-                    {% if lease.lease_easements == True or lease.alienation_clause == True or lease.title_registered == True %}
-                    <h4>Clauses</h4>
-                    {% endif %}
-
-                    {% if lease.lease_easements == True %}
-                        <p id="easementClause">Unless otherwise mentioned the title includes any legal easements granted
-                            by the registered lease(s) but is subject to any rights that it reserves,
-                            so far as those easements and rights exist and benefit or
-                            affect the registered land.
-                        </p><br/>
-                    {% endif %}
-
-                    {% if lease.alienation_clause == True %}
-                        <p id="alienationClause">There are excepted from the effect of registration all estates. rights,
-                            interests, powers and remedies arising upon, or by reason of, any
-                            dealing made in breach of the prohibition or restriction against
-                            dealings therewith inter vivos contained in the Lease.
-                        </p><br/>
-                    {% endif %}
-
-                    {% if lease.title_registered == True %}
-                        <p id="titleRegisteredClause">The landlord's title is registered.</p><br/>
-                    {% endif %}
-                {% endfor %}
-                {% endif %}
+                
             </div>
         </div>
+
         <div class="grid grid-1-2">
             <div class="inner-block">
-                <div id="map" style="width: 100%; height: 300px">
-                  <script type='text/javascript'>
-                    var extentData = {{ title.extent | tojson}};
-                    var apiKey = "{{ apiKey }}";
-                  </script>
-                  <script src="{{asset_path}}/javascripts/map.js"></script>
-                </div>
+                <div id="map" style="width: 100%; height: 300px"></div>
             </div>
         </div>
-    </div><!-- end grid-wrapper -->
+
+    </div>
 
     <div class="grid-wrapper">
-        <div class="grid">
-            <div class="inner-block">
-                <a class="button" href="{{service_frontend_url}}/{{title.title_number}}">View full register</a>
-                <p class="text">You will need to sign in with GOV.UK to view the full details on the register.</p>
+
+      <div class="grid grid-1-2">
+        <div class="inner-block">
+
+          <p><a href="{{service_frontend_url}}/{{title.title_number}}">View official title register for this property</a></p>
+
+          <details class="font-xsmall">
+            <summary>What is the official title register?</summary>
+            <div class="text panel-indent">
+              <p>You can get information about registered property or land in England and Wales, even if you don’t own it.</p>
+              <p>You will need to sign in using GOV.UK Verify to view official title registers.</p>
             </div>
+          </details>
+
         </div>
-    </div><!-- end grid-wrapper -->
+      </div>
+
+      <div class="grid grid-1-2">
+        <div class="inner-block">
+
+          <p>
+            <a href="#">Download vCard</a><br>
+            <a href="#">Register for property notifications</a>
+          </p>
+        
+        </div>
+      </div>
+
+    </div>
 
   </div><!-- end content -->
 </main>
 
+{% endblock %}
+
+{% block js_additionals %}
+    <script type='text/javascript'>
+        var extentData = {{ title.extent | tojson}};
+        var apiKey = "{{ apiKey }}";
+    </script>
+    <script src="{{asset_path}}/javascripts/map.js"></script>
 {% endblock %}
