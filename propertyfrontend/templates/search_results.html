@@ -22,7 +22,7 @@
                                 Search results for
                             </h1>
                         </label>
-                        <input type="text" class="form-control" name="search" id="search-terms" value={{query}} />
+                        <input type="text" class="form-control" name="search" id="search-terms" value="{{query}}" />
                         <button type="submit" class="button">Search</button>
                     </div>
                 </form>
@@ -36,6 +36,7 @@
                         <div class="grid grid-1-4">
                             <span itemprop="addressLocality">{{ title.property.address.town }}</span><br>
                             <span itemprop="postalCode">{{ title.property.address.postcode }}</span>
+                            <p><a href="/property/{{ title.title_number }}">View property</a></p>
                         </div>
                         <div class="grid grid-1-2">
                             <dl class="definition-tabular">
