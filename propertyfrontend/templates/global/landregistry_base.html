@@ -8,3 +8,12 @@
 {% block cookie_message %}
   <p>GOV.UK uses cookies to make the site simpler. <a href="https://www.gov.uk/help/cookies">Find out more about cookies</a></p>
 {% endblock %}
+
+{% block body_end %}
+  <script src="{{ landregistry_asset_path }}javascripts/land-registry-scripts.js"></script>
+  <script src="{{ asset_path }}javascripts/vendor/leaflet-0.7.3/leaflet.js"></script>
+  <script src="{{asset_path}}/javascripts/proj4.js"></script><!-- proj4js -->
+  <script src="{{asset_path}}/javascripts/proj4leaflet.js"></script><!-- proj4leaflet -->
+  <script src="{{asset_path}}/javascripts/osopenspace.js"></script><!-- OS OpenSpace layer -->
+  {% block js_additionals %}{% endblock %}
+{% endblock %}
