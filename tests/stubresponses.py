@@ -4,10 +4,9 @@ title = {
     "title_number": "TN1234567",
     "property": {
         "address": {
-            "title_number": "TN1",
-            "house_number": "12",
-            "road": "High St",
-            "town": "Sometown",
+            "address_line_1": "12",
+            "address_line_2": "High St",
+            "city": "Sometown",
             "postcode": "ABC 123"
         }
     },
@@ -59,10 +58,9 @@ title1 = {
     "title_number": "TN7654321",
     "property": {
         "address": {
-            "title_number": "TN1",
-            "house_number": "10",
-            "road": "Low St",
-            "town": "Funtown",
+            "address_line_1": "10",
+            "address_line_2": "Low St",
+            "city": "Funtown",
             "postcode": "CAB 321"
         }
     },

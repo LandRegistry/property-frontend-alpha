@@ -92,15 +92,16 @@ class ViewPropertyTestCase(unittest.TestCase):
         rv = self.app.get('search/results?search=%s' % TITLE_NUMBER,
           follow_redirects=True)
         app.logger.info(rv.data)
-        assert rv.status_code == 200
-        assert "TN1234567" in rv.data
-        assert "12 High St" in rv.data
-        assert "Sometown" in rv.data
-        assert "ABC 123" in rv.data
-        assert "TN7654321" in rv.data
-        assert "10 Low St" in rv.data
-        assert "Funtown" in rv.data
-        assert "CAB 321" in rv.data
+
+        self.assertEquals(rv.status_code, 200)
+        self.assertTrue("TN1234567" in rv.data)
+        self.assertTrue("12 High St" in rv.data)
+        self.assertTrue("Sometown" in rv.data)
+        self.assertTrue("ABC 123" in rv.data)
+        self.assertTrue("TN7654321" in rv.data)
+        self.assertTrue("10 Low St" in rv.data)
+        self.assertTrue("Funtown" in rv.data)
+        self.assertTrue("CAB 321" in rv.data)
 
 
     def health(self):
