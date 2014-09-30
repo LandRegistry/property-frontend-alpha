@@ -44,26 +44,26 @@
                     <span itemprop="postalCode">{{ title.property.address.postcode }}</span>
                 </h2>
 
-                <dl class="definition-tabular">
-                    <dt>Property type</dt>
-                    <dd>****</dd>
+                <dl class="definition-tabular--1-3--b">
+                    <!--<dt>Property type</dt>
+                    <dd></dd>-->
 
                     <dt>Title number</dt>
                     <dd>{{ title.title_number }}</dd>
 
                     <dt>Title quality</dt>
-                    <dd>{{ title.property.class_of_title }}</dd>
+                    <dd>{{ title.property.class_of_title | capitalize }}</dd>
 
                     <dt>Tenure type</dt>
-                    <dd>{{ title.property.tenure }}</dd>
+                    <dd>{{ title.property.tenure | capitalize }}</dd>
 
                     {% if title.payment.price_paid %}
                     <dt>Price paid</dt>
-                    <dd>&pound; {{ title.payment.price_paid | currency }}</dd>
+                    <dd>&pound;{{ title.payment.price_paid | currency }}</dd>
                     {% endif %}
 
-                    <dt>Council</dt>
-                    <dd><a href="#">****</a></dd>
+                    <!--<dt>Council</dt>
+                    <dd><a href="#"></a></dd>-->
                 </dl>
                 
             </div>
