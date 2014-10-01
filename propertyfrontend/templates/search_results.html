@@ -35,30 +35,25 @@
 
                         <h2 class="grid heading-medium">
                             <a href="/property/{{ title.title_number }}">
-                                {{ title.property.address.address_line_1 }} {{ title.property.address.address_line_2 }}
+                                {{ title.title_number }}
                             </a>
                         </h2>
 
                         <div class="grid grid-1-4">
                             <span itemprop="streetAddress">
                                 <span class="visuallyhidden">
-                                    {{ title.property.address.address_line_1 }} {{ title.property.address.address_line_2 }}
+                                    {{ title.property_description.fields['address'] }}
                                 </span>
-                                {% if title.property.address.address_line_3 %}
-                                    {{ title.property.address.address_line_3 }}<br>
-                                {% endif %}
-                                {% if title.property.address.address_line_4 %}
-                                    {{ title.property.address.address_line_4 }}<br>
-                                {% endif %}
                             </span>
-                            <span itemprop="addressLocality">{{ title.property.address.city }}</span><br>
-                            <span itemprop="postalCode">{{ title.property.address.postcode }}</span>
+
                         </div>
 
                         <div class="grid grid-1-2">
                             <dl class="definition-tabular">
                                 <dt>Title number</dt>
                                 <dd>{{ title.title_number }}</dd>
+                                <dd>{{ title.property_description.fields['address'].full_address }}</dd>
+
                             </dl>
                         </div>
 
