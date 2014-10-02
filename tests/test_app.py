@@ -95,13 +95,9 @@ class ViewPropertyTestCase(unittest.TestCase):
 
         self.assertEquals(rv.status_code, 200)
         self.assertTrue("TN1234567" in rv.data)
-        self.assertTrue("12 High St" in rv.data)
-        self.assertTrue("Sometown" in rv.data)
-        self.assertTrue("ABC 123" in rv.data)
+        self.assertTrue("8 Miller Way, Plymouth, Devon, PL6 8UQ" in rv.data)
         self.assertTrue("TN7654321" in rv.data)
         self.assertTrue("10 Low St" in rv.data)
-        self.assertTrue("Funtown" in rv.data)
-        self.assertTrue("CAB 321" in rv.data)
 
 
     def health(self):
