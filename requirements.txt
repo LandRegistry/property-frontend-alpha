@@ -1,17 +1,16 @@
-Flask==0.10.1
-Flask-Assets==0.10
-Flask-BasicAuth==0.2.0
-Jinja2==2.7.3
-MarkupSafe==0.23
-Werkzeug==0.9.6
-eventlet==0.15.0
-greenlet==0.4.2
-gunicorn==19.0.0
-itsdangerous==0.24
-requests==2.3.0
-webassets==0.10.1
-wsgiref==0.1.2
--e git+https://github.com/Runscope/healthcheck.git@9d661a916f3ab630ae21e014758aa2f21fd40097#egg=healthcheck
-raven==5.0.0
-blinker==1.3
 -e git+https://github.com/LandRegistry/audit-plugin.git#egg=audit
+-e git+https://github.com/Runscope/healthcheck.git@9d661a916f3ab630ae21e014758aa2f21fd40097#egg=healthcheck
+blinker
+eventlet
+Flask
+Flask-BasicAuth
+greenlet
+eventlet
+gunicorn
+itsdangerous
+Jinja2
+MarkupSafe
+raven
+requests
+Werkzeug
+wsgiref
