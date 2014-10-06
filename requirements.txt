@@ -5,7 +5,6 @@ eventlet
 Flask
 Flask-BasicAuth
 greenlet
-eventlet
 gunicorn
 itsdangerous
 Jinja2
