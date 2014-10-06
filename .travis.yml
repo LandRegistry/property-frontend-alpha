@@ -6,21 +6,19 @@ install:
 - pip install -r requirements_test.txt
 - pip install python-coveralls
 env:
-- SETTINGS='config.TestConfig'
+  global:
+  - secure: oJJRU5sc/UE+9dFdnGL16k/NsnEFluxS3qAYsTuyZpcAcdwjwou2ccx3waC1PDD3WMPgsQD51+1ZhFSgqJ0noHy5LNg3leayDoxY76es5YzWpPzWGFaPPJwZqYxSTcZjcCJne+TK1hpMRc/InLng/u6wLWQY7ZFYfpzoFwv4Ldc=
+  - SETTINGS='config.TestConfig'
 script:
 - source ./environment.sh
 - source ./environment_test.sh
 - py.test --cov propertyfrontend  tests/ --cov-report=term --cov-report=html
 after_success:
-  - coveralls --ignore-errors
-env:
-  global:
-  - secure: "oJJRU5sc/UE+9dFdnGL16k/NsnEFluxS3qAYsTuyZpcAcdwjwou2ccx3waC1PDD3WMPgsQD51+1ZhFSgqJ0noHy5LNg3leayDoxY76es5YzWpPzWGFaPPJwZqYxSTcZjcCJne+TK1hpMRc/InLng/u6wLWQY7ZFYfpzoFwv4Ldc="
-  - SETTINGS='config.TestConfig'
+- coveralls --ignore-errors
 deploy:
   provider: heroku
   api_key:
-    secure: TMpwzEww7Nr4+mSXakB8JUQFI5Uw3hGHLp6gaT7CQKKfDgThSYSOQIDydgzXTJKV3PrpToW4LlllEGlPCgWnUkB9McCmE6zrxJf5V2VQ2FmG5JpFuYlyI4iP4IAR0woZ0ucKRMzofpI9Nq1F+WLgl2aBNHAOGUna6MZ3bMvrQBY=
+    secure: QeHgbE86S+pEyDheTSjY+FAZtYh4LAbDY9bETbzfajg+ttNRUSnEgNYWH3Awi4jWsOJ2em4FMp6n70GqeDq9wUoCFZNesZFVEjjyhL8nJbnrdBvnc7p7LRO9SQWmfb+Ab9yOtT+bilUcyzr2AaEt5P1ES1wbzTQALfKrwxlnKqU=
   app: lr-property-frontend
   on:
     repo: LandRegistry/property-frontend
