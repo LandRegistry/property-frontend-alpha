@@ -42,14 +42,14 @@
                     <dd>{{ title.title_number }}</dd>
 
                     <dt>Title quality</dt>
-                    <dd>{{ title.property_description.fields['class_of_title'] | capitalize }}</dd>
+                    <dd>{{ title.class_of_title | capitalize }}</dd>
 
                     <dt>Tenure type</dt>
-                    <dd>{{ title.property_description.fields['tenure'] | capitalize }}</dd>
+                    <dd>{{ title.tenure | capitalize }}</dd>
 
                     {% if title.price_paid %}
                     <dt>Price paid</dt>
-                    <dd>&pound;{{ title.price_paid.fields['amount'] }}</dd>
+                    <dd>{{ title.price_paid.fields.amount[0] }} on {{ title.price_paid.fields.date[0] }}</dd>
                     {% endif %}
 
                     <!--<dt>Council</dt>
