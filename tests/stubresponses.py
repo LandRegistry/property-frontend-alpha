@@ -5,7 +5,7 @@ title = {
     "property_description" : {
         "template" : "The Freehold land shown edged with red on the plan of the above Title filed at the Registry and being *AD*",
         "full_text" : "The Freehold land shown edged with red on the plan of the above Title filed at the Registry and being 8 Miller Way, Plymouth, Devon, PL6 8UQ",
-        "fields" : {"tenure": "freehold", "address" : {"full_address": "8 Miller Way, Plymouth, Devon, PL6 8UQ", "house_no" : "8", "street_name" : "Miller Way", "town" : "Plymouth", "postal_county" : "Devon", "region_name" : "", "country" : "", "postcode":""}},
+        "fields" : {"tenure": "freehold", "addresses" : [{"full_address": "8 Miller Way, Plymouth, Devon, PL6 8UQ", "house_no" : "8", "street_name" : "Miller Way", "town" : "Plymouth", "postal_county" : "Devon", "region_name" : "", "country" : "", "postcode":""}]},
         "deeds" : [],
         "notes" : []
     },
@@ -64,14 +64,14 @@ title1 = {
     "property_description" : {
         "template" : "The Freehold land shown edged with red on the plan of the above Title filed at the Registry and being *AD*",
         "full_text" : "The Freehold land shown edged with red on the plan of the above Title filed at the Registry and being 8 Miller Way, Plymouth, Devon, PL6 8UQ",
-        "fields" : {"tenure": "freehold", "address" : {"full_address": "10 Low St", "house_no" : "8", "street_name" : "Miller Way", "town" : "Plymouth", "postal_county" : "Devon", "region_name" : "", "country" : "", "postcode":""}},
+        "fields" : {"tenure": "freehold", "addresses" : [{"full_address": "10 Low St", "house_no" : "8", "street_name" : "Miller Way", "town" : "Plymouth", "postal_county" : "Devon", "region_name" : "", "country" : "", "postcode":""}]},
         "deeds" : [],
         "notes" : []
     },
     "price_paid" : {
         "template" : "The price stated to have been paid on *DA* was *AM*.",
         "full_text" : "The price stated to have been paid on 15/11/2005 was £1,000.",
-        "fields" : {"date" : "15/11/2005", "amount" : "1000"},
+        "fields" : {"date" :[ "15/11/2005"], "amount" : ["£1000"]},
         "deeds" : [],
         "notes" : []
     },
