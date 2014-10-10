@@ -42,7 +42,7 @@
                         <div class="grid grid-1-4">
                             <span itemprop="streetAddress">
                                 <span class="visuallyhidden">
-                                    {{ title.property_description.fields['address'] }}
+                                    {{ title.property_description.fields['addresses'][0] }}
                                 </span>
                             </span>
 
@@ -52,7 +52,7 @@
                             <dl class="definition-tabular">
                                 <dt>Title number</dt>
                                 <dd>{{ title.title_number }}</dd>
-                                <dd>{{ title.property_description.fields['address'].full_address }}</dd>
+                                <dd>{{ title.property_description.fields['addresses'][0].full_address }}</dd>
 
                             </dl>
                         </div>
