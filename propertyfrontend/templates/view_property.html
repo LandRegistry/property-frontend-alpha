@@ -49,7 +49,11 @@
 
                     {% if title.price_paid %}
                     <dt>Price paid</dt>
-                    <dd>{{ title.price_paid.fields.amount[0] }} on {{ title.price_paid.fields.date[0] }}</dd>
+                        {% if title.price_paid.fields.amount %}
+                        <dd>{{ title.price_paid.fields.amount[0] }} on {{ title.price_paid.fields.date[0] }}</dd>
+                         {% else %}
+                         <dd>{{ title.price_paid.full_text }}</dd>
+                         {% endif %}
                     {% endif %}
 
                     <!--<dt>Council</dt>
