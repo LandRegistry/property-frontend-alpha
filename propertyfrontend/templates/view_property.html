@@ -74,7 +74,7 @@
                         {% if title.price_paid.fields.amount %}
                         <dd>{{ title.price_paid.fields.amount[0] }} on {{ title.price_paid.fields.date[0] }}</dd>
                          {% else %}
-                         <dd>{{ title.price_paid.full_text }}</dd>
+                         <dd>{{ title.price_paid.full_text.decode('unicode-escape') | striptags  }}</dd>
                          {% endif %}
                     {% endif %}
 
