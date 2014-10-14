@@ -13,6 +13,10 @@ from audit import Audit
 
 import os, requests
 
+from utils import (
+    build_address
+)
+
 search_api = app.config['SEARCH_API']
 HealthCheck(app, '/health')
 Audit(app)
@@ -53,9 +57,11 @@ def property_by_title_number(title_number):
     json = response.json()
     app.logger.info("Found the following title: %s" % json)
     service_frontend_url = '%s/%s' % (app.config['SERVICE_FRONTEND_URL'], 'property')
+    address = build_address(json)
     return render_template(
         'view_property.html',
         title=json,
+        address=address,
         apiKey=os.environ['OS_API_KEY'],
         service_frontend_url=service_frontend_url)
 
