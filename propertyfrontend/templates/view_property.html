@@ -27,12 +27,36 @@
         <div class="grid grid-1-2">
             <div class="inner-block">
 
-                <h2 class="heading-large collapse-top" itemscope itemtype="http://schema.org/PostalAddress">
-                    <span itemprop="streetAddress">
-                         {{ title.property_description.fields['addresses'][0].full_address }}
-                    </span>
-
-                </h2>
+                {% if address %}
+                  {% if address.structured %}
+                    <h2 class="collapse-top" itemscope itemtype="http://schema.org/PostalAddress">
+                      <span itemprop="streetAddress">
+                        {{ address.structured.house_no }} {{ address.structured.street_name }}<br>
+                      </span>
+                      <span itemprop="addressLocality">{{ address.structured.town }}</span><br>
+                      <span itemprop="addressRegion">
+                          {% if address.structured.postal_county %}
+                              {{ address.structured.postal_county }}<br>
+                          {% endif %}
+                          {% if address.structured.region_name %}
+                              {{ address.structured.region_name }}<br>
+                          {% endif %}
+                      </span>
+                      <span itemprop="postalCode">{{ address.structured.postcode }}<br></span>
+                      {% if address.structured.country %}
+                        <span itemprop="addressCountry">{{ address.structured.country }}</span>
+                      {% endif %}
+                    </h2>
+                  {% else %}
+                    <h2 class="collapse-top">
+                    {% for item in address.string.get_fields()  %}
+                        {{ item }}<br>
+                    {% endfor %}
+                    </h2>
+                  {% endif %}
+                {% else %}
+                  <h2 class="collapse-top">{{ title.property_description.fields['addresses'][0].full_address }}</h2>
+                {% endif %}
 
                 <dl class="definition-tabular--1-3--b">
 
