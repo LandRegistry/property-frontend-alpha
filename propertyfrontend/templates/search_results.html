@@ -33,17 +33,17 @@
                     {% for title in results %}
                     <li class="result">
 
-                        <h2 class="grid heading-medium">
-                            <a href="/property/{{ title.title_number }}">
-                                {{ title.title_number }}
-                            </a>
-                        </h2>
 
                         <div class="grid grid-1-2">
-                            <dl class="definition-tabular">
+                            <h2 class="heading-medium collapse-top">
+                                <a href="/property/{{ title.title_number }}">{{ title.title_number }}</a>
+                            </h2>
+                            <p class="lede">{{ title.property_description.fields['addresses'][0].full_address }}</p>
+                            <dl class="definition-inline">
+                                <dt>Tenure</dt>
+                                <dd>{{ title.tenure | capitalize }}</dd>
                                 <dt>Title number</dt>
                                 <dd>{{ title.title_number }}</dd>
-                                <dd>{{ title.property_description.fields['addresses'][0].full_address }}</dd>
                             </dl>
                         </div>
 
