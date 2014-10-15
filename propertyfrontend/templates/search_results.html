@@ -1,4 +1,5 @@
 {% extends "propertyfrontend_base.html" %}
+{% import 'address_macros.html' as address  with context %}
 
 {% block content %}
     <main id="wrapper" role="main">
@@ -38,7 +39,10 @@
                             <h2 class="heading-medium collapse-top">
                                 <a href="/property/{{ title.title_number }}">{{ title.title_number }}</a>
                             </h2>
-                            <p class="lede">{{ title.property_description.fields['addresses'][0].full_address }}</p>
+                            <div class="lede">
+                                {{ address.format(title) }}
+                            </div>
+
                             <dl class="definition-inline">
                                 <dt>Tenure</dt>
                                 <dd>{{ title.tenure | capitalize }}</dd>
