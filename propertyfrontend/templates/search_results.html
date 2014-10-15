@@ -49,7 +49,7 @@
 
                         <div class="grid grid-1-4">
                             <div class="map" style="width: 240px; height: 160px;">
-                                <img src="http://placehold.it/240x160" class="placeholder" alt="Just a placeholder">
+                                <img src="http://placehold.it/240x160" alt="Just a placeholder">
                             </div>
                         </div>
                     </li>
@@ -71,6 +71,12 @@
 {% endblock %}
 
 {% block js_additionals %}
+
+    {#
+      Note: Really the results maps should be raster images?
+      Progressively building in the Leaflet maps in the abscence of a bitmap server
+    #}
+
     <script type='text/javascript'>
 
         var extentData = [];
@@ -145,5 +151,4 @@
         });
 
     </script>
-    <!--<script src="{{asset_path}}/javascripts/map.js"></script>-->
 {% endblock %}
