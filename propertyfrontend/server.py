@@ -82,7 +82,12 @@ def search_results():
       % (len(result_json['results']), result_json))
     one_result = len(result_json['results']) == 1
 
-    return render_template('search_results.html', results=result_json['results'], query=query)
+    return render_template(
+        'search_results.html',
+        results=result_json['results'],
+        query=query,
+        apiKey=os.environ['OS_API_KEY']
+    )
 
 
 @app.errorhandler(404)
