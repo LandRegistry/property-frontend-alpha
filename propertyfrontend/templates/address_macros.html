@@ -39,7 +39,12 @@
 
     {% else %}
 
-        {% for item in address.string.get_fields()  %}
+        {% for item in address.string.get_fields() %}
+            {% if loop.first and title_link %}
+                <h2 class="heading-medium collapse-top">
+                    <a href="/property/{{ title_link }}">{{ item }}</a>
+                </h2>
+            {% endif %}
             {{ item }}<br>
         {% endfor %}
 
