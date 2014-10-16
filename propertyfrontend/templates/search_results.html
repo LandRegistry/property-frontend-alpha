@@ -36,11 +36,8 @@
 
 
                         <div class="grid grid-1-2">
-                            <h2 class="heading-medium collapse-top">
-                                <a href="/property/{{ title.title_number }}">{{ title.title_number }}</a>
-                            </h2>
                             <div class="lede">
-                                {{ address.format(title) }}
+                                {{ address.format(title, title.title_number) }}
                             </div>
 
                             <dl class="definition-inline">

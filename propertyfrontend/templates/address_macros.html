@@ -1,4 +1,4 @@
-{% macro format(title) -%}
+{% macro format(title, title_link) -%}
 
     {% set address = formatted(title)  %}
 
@@ -6,7 +6,15 @@
 
         <div itemscope itemtype="http://schema.org/PostalAddress">
             <span itemprop="streetAddress">
-                {{ address.structured.house_no }} {{ address.structured.street_name }}<br>
+                {% if title_link %}
+                    <h2 class="heading-medium collapse-top"><a href="/property/{{ title_link }}">
+                {% endif %}
+                {{ address.structured.house_no }} {{ address.structured.street_name }}
+                {% if title_link %}
+                    </a></h2>
+                {% else %}
+                    <br>
+                {% endif %}
             </span>
             <span itemprop="addressLocality">
                 {{ address.structured.town }}<br>
