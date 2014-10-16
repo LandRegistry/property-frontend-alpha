@@ -27,3 +27,10 @@ def asset_path_context_processor():
       'asset_path': '/static/build/',
       'landregistry_asset_path': '/static/build/'
     }
+
+@app.context_processor
+def address_processor():
+    from utils import build_address
+    def process_address_json(title):
+        return build_address(title)
+    return dict(formatted=process_address_json)

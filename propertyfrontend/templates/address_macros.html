@@ -1,0 +1,53 @@
+{% macro format(title, title_link) -%}
+
+    {% set address = formatted(title)  %}
+
+    {% if address.structured %}
+
+        <div itemscope itemtype="http://schema.org/PostalAddress">
+            <span itemprop="streetAddress">
+                {% if title_link %}
+                    <h2 class="heading-medium collapse-top"><a href="/property/{{ title_link }}">
+                {% endif %}
+                {{ address.structured.house_no }} {{ address.structured.street_name }}
+                {% if title_link %}
+                    </a></h2>
+                {% else %}
+                    <br>
+                {% endif %}
+            </span>
+            <span itemprop="addressLocality">
+                {{ address.structured.town }}<br>
+            </span>
+            <span itemprop="addressRegion">
+                {% if address.structured.postal_county %}
+                    {{ address.structured.postal_county }}<br>
+                {% endif %}
+                {% if address.structured.region_name %}
+                    {{ address.structured.region_name }}<br>
+                {% endif %}
+            </span>
+            <span itemprop="postalCode">
+                {{ address.structured.postcode }}<br>
+            </span>
+            {% if address.structured.country %}
+                <span itemprop="addressCountry">
+                    {{ address.structured.country }}
+                </span>
+            {% endif %}
+        </div>
+
+    {% else %}
+
+        {% for item in address.string.get_fields() %}
+            {% if loop.first and title_link %}
+                <h2 class="heading-medium collapse-top">
+                    <a href="/property/{{ title_link }}">{{ item }}</a>
+                </h2>
+            {% endif %}
+            {{ item }}<br>
+        {% endfor %}
+
+    {% endif %}
+
+{%- endmacro %}

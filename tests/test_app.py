@@ -95,7 +95,10 @@ class ViewPropertyTestCase(unittest.TestCase):
 
         self.assertEquals(rv.status_code, 200)
         self.assertTrue("TN1234567" in rv.data)
-        self.assertTrue("8 Miller Way, Plymouth, Devon, PL6 8UQ" in rv.data)
+        self.assertTrue("8 Miller Way"  in rv.data)
+        self.assertTrue("PL6 8UQ" in rv.data)
+        self.assertTrue("Plymouth" in rv.data)
+        self.assertTrue("Devon" in rv.data)
         self.assertTrue("TN7654321" in rv.data)
         self.assertTrue("10 Low St" in rv.data)
 
