@@ -19,7 +19,7 @@ if not app.debug:
     app.logger.addHandler(logging.StreamHandler())
     app.logger.setLevel(logging.INFO)
 
-app.logger.info("\nConfiguration\n%s\n" % app.config)
+app.logger.debug("\nConfiguration\n%s\n" % app.config)
 
 @app.context_processor
 def asset_path_context_processor():
