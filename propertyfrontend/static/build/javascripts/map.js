@@ -52,8 +52,8 @@ var extentGeoJson = L.Proj.geoJson(extentData, {
 //Center map view on geojson polygon
 var bounds = extentGeoJson.getBounds();
 var center = bounds.getCenter();
-map.setView([center.lat, center.lng], 10)
-map.fitBounds(bounds, {maxZoom: 10, animate: false});
+map.setView([center.lat, center.lng], 9)
+map.fitBounds(bounds, {maxZoom: 9, animate: false});
 
 //Add a scale control to the map
 L.control.scale().addTo(map);
