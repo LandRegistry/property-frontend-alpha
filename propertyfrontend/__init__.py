@@ -2,10 +2,13 @@ import os, logging
 from flask import Flask
 from flask.ext.basicauth import BasicAuth
 from raven.contrib.flask import Sentry
+from lrutils import dateformat
 
 app = Flask(__name__)
 
 app.config.from_object(os.environ.get('SETTINGS'))
+
+app.jinja_env.filters['dateformat'] = dateformat
 
 if app.config.get('BASIC_AUTH_USERNAME'):
     app.config['BASIC_AUTH_FORCE'] = True
