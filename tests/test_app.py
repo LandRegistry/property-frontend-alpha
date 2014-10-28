@@ -66,16 +66,6 @@ class ViewPropertyTestCase(unittest.TestCase):
       service_frontend_url = '%s/%s/%s' % (self.service_api, 'property', title_number)
       assert service_frontend_url in rv.data
 
-    def test_currency_format(self):
-        from propertyfrontend.server import currency
-        assert '1.00' == currency(1)
-        assert '10.00' == currency(10)
-        assert '100.00' == currency(100)
-        assert '1,000.00' == currency(1000)
-        assert '10,000.00' == currency(10000)
-        assert '100,000.00' == currency(100000)
-
-
     @responses.activate
     def test_for_two_search_results(self):
         #Mock a response, as though JSON is coming back from SEARCH_API

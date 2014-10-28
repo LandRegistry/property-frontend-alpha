@@ -1,17 +1,15 @@
-from propertyfrontend import app
-from datetime import datetime
+import os
 
 from flask import render_template
 from flask import request
 from flask import redirect
-from flask import request_started
 from flask import url_for
 from flask import abort
-
 from healthcheck import HealthCheck
 from audit import Audit
+import requests
 
-import os, requests
+from propertyfrontend import app
 
 search_api = app.config['SEARCH_API']
 HealthCheck(app, '/health')
@@ -29,16 +27,6 @@ def get_or_log_error(url):
         app.logger.error("Error %s", e)
         abort(500)
 
-
-@app.template_filter()
-def currency(value):
-    """Format a comma separated  currency to 2 decimal places."""
-    return "{:,.2f}".format(float(value))
-
-@app.template_filter()
-def format_date_YMD(value):
-    new_date = datetime.strptime(value, '%Y-%m-%d')
-    return new_date.strftime('%d %B %Y')
 
 @app.route('/')
 def index():
