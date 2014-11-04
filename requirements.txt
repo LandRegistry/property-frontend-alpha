@@ -11,6 +11,5 @@ raven==5.1.1
 requests==2.4.3
 Werkzeug==0.9.6
 wsgiref==0.1.2
-lrutils==0.1.1
-lraudit==0.1.1
+lrutils==0.1.2
 healthcheck==0.2
