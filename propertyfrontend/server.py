@@ -6,7 +6,7 @@ from flask import redirect
 from flask import url_for
 from flask import abort
 from healthcheck import HealthCheck
-from audit import Audit
+from lrutils.audit import Audit
 import requests
 
 from propertyfrontend import app
