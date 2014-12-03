@@ -1,0 +1,38 @@
+{% extends "propertyfrontend_base.html" %}
+
+{% block page_title %}{{error}}{% endblock %}
+
+{% block content %}
+
+<main id="wrapper" role="main">
+
+  <div id="content">
+
+    {% include "inc_alpha_banner.html" %}
+
+    <div class="inner-block">
+
+        {% if code != 500 %}
+            <h1 class="heading-xlarge">
+                {{error}}
+            </h1>
+
+            <div class="text">
+                <p>{{description}}</p><br/>
+            </div>
+        {% else %}
+            <h1 class="heading-xlarge">
+                Sorry, we are experiencing technical difficulties
+            </h1>
+
+            <div class="text">
+                <p>Please try again in a few moments.</p>
+            </div>
+        {% endif %}
+
+    </div>
+  </div>
+
+</main>
+
+{% endblock %}

@@ -6,14 +6,12 @@ from flask import redirect
 from flask import url_for
 from flask import abort
 from healthcheck import HealthCheck
-from lrutils.audit import Audit
 import requests
 
 from propertyfrontend import app
 
 search_api = app.config['SEARCH_API']
 HealthCheck(app, '/health')
-Audit(app)
 
 def get_or_log_error(url):
     try:
@@ -70,25 +68,3 @@ def search_results():
         query=query,
         apiKey=os.environ['OS_API_KEY']
     )
-
-
-@app.errorhandler(404)
-def page_not_found(err):
-    return render_template('404.html'), 404
-
-
-@app.errorhandler(500)
-def error(err):
-    return render_template('500.html'), 500
-
-# could go further and create a catch all that ensures we
-# return nicer page than default for *any* errors?
-
-
-@app.after_request
-def after_request(response):
-    response.headers.add('Content-Security-Policy', "default-src 'self' 'unsafe-inline' data: ; img-src *")
-    response.headers.add('X-Frame-Options', 'deny')
-    response.headers.add('X-Content-Type-Options', 'nosniff')
-    response.headers.add('X-XSS-Protection', '1; mode=block')
-    return response

@@ -3,6 +3,8 @@ from flask import Flask
 from flask.ext.basicauth import BasicAuth
 from raven.contrib.flask import Sentry
 from lrutils import dateformat
+from lrutils.audit import Audit
+from lrutils.errorhandler.errorhandler_utils import ErrorHandler, eh_after_request
 
 app = Flask(__name__)
 
@@ -26,6 +28,11 @@ if not app.debug:
     app.logger.setLevel(logging.INFO)
 
 app.logger.debug("\nConfiguration\n%s\n" % app.config)
+
+# Audit, error handling and after_request headers all handled by lrutils
+Audit(app)
+ErrorHandler(app)
+app.after_request(eh_after_request)
 
 @app.context_processor
 def asset_path_context_processor():
