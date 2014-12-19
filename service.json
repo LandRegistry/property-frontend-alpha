@@ -1,0 +1,16 @@
+{
+  "name": "property-frontend",
+  "type": "front-end",
+  "github": "https://github.com/LandRegistry/property-frontend",
+  "heroku": "lr-property-frontend",
+  "url": "http://www.gov.uk.landregistryconcept.co.uk",
+  "port": 8002,
+  "database": "false",
+  "tech": [
+    "python",
+    "flask"
+  ],
+  "dependencies": [
+    "search-api"
+  ]
+}
