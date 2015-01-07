@@ -25,14 +25,3 @@ When(/^I choose to view the property details$/) do
   address_split = $regData['property_description']['fields']['addresses'][0]['full_address'].split(',')
   click_link(address_split[0])
 end
-
-def getSearchResultForTitleNumber()
-  arr = Array.new
-  page.all(:xpath, ".//ul[@class='results-list']").each do |row|
-    if (row.text.include? $regData['title_number'])
-      arr << row
-    end
-  end
-  assert_equal(arr.length, 1, "There are #{arr.length} search results for" + $regData['title_number'])
-  return arr[0]
-end

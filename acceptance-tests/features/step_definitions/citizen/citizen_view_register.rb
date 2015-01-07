@@ -18,7 +18,7 @@ When(/^I try to view a property that does not exist$/) do
 end
 
 Then(/^an error is displayed$/) do
-  assert_match('Page not found', page.body, 'Expected not to find the page')
+  assert_match('404: Not Found', page.body, 'Expected not to find the page')
 end
 
 Then(/^No lease information is displayed$/) do
