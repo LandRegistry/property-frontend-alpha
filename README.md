@@ -53,7 +53,7 @@ heroku config:set TITLE_API_URL=http://lr-public-titles-api.herokuapp.com/
 
 ### Run the app
 
-Run in dev mode to enable app reloading
+Run in development mode to enable app reloading
 
 ```
 ./run.sh dev
