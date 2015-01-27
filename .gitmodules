@@ -1,0 +1,3 @@
+[submodule "acceptance-tests/lib"]
+	path = acceptance-tests/lib
+	url = https://github.com/LandRegistry/acceptance-tests-lib.git

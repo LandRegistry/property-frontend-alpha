@@ -1,0 +1,29 @@
+language: ruby
+cache: bundler
+rvm:
+- 2.1.1
+install: true
+env:
+  global:
+  - ENVIRONMENT="preview"
+  - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
+  - CASEWORK_FRONTEND_DOMAIN="http://casework.landregistryconcept.co.uk"
+  - PROPERTY_FRONTEND_DOMAIN="http://www.gov.uk.landregistryconcept.co.uk"
+  - MINT_API_DOMAIN="http://lr-mint.herokuapp.com"
+  - LR_SEARCH_API_DOMAIN="http://lr-search-api.herokuapp.com"
+  - SYSTEM_OF_RECORD_API_DOMAIN="http://lr-system-of-record.herokuapp.com"
+  - SERVICE_FRONTEND_DOMAIN="http://land.service.gov.uk.landregistryconcept.co.uk"
+  - LR_FIXTURES_URL="http://lr-fixtures.herokuapp.com"
+  - CASES_URL="http://lr-cases.herokuapp.com"
+  - HISTORIAN_URL="http://lr-historian.herokuapp.com"
+  - INTRODUCTIONS_DOMAIN="http://lr-introduction-service.herokuapp.com"
+  - secure: LJEocntktAZE0xFpYIfhMkxgTaxURhIhJqD+YRasVPli18ReBWfmdMoBSHDuuXfffGklBuCrVx3fntii7Pm5bgn9Xu9xNcZVYrod9oXn47qL0lVjYuzXsDI15NojYoD9pAO9KuJ2J4FlrhSsn/+XBBP2hBXT660t4bcOGeHOucw=
+  - secure: AO8MDSpUlFQQRzOge9yO7C+d3HjB9CdYKXqH/tKJYK/5Pl914HJI9m41p86BW1wjaoUYOaIB6oTIYyPwz7NyrF5Yqrj+Vdba5DXrFzLYHbRLc+wHajfiWHDJpDs4dVm3DX5dLEiKQkk7qvUObcBAMEyYah7TrLVBeO6Dsbx1hpA=
+  - secure: MpJQvD81PtStMXzltpWapX0dovxfPDL3bgmsziWfQG+iY1jEB+rnH1Qv3inwAb2Qo0wZmxmXj3sljz2CxSSJyxU3xTPISW4YpeCoFmEIfIzVptcxXkMZXsJFYGR9b/8lRXD/p2kz2zdCe/ggc4npFYSYc6f9EAf294sKRryJ+0o=
+before_install:
+  - 'echo ''gem: --no-ri --no-rdoc'' > ~/.gemrc'
+before_script:
+- bundle install
+script:
+- bundle exec cucumber --tags ~@wip --tags ~@removed  --tags ~@performance_test --format json --out report.json --format pretty
+- curl -X POST -H 'Content-Type:application/json' -d @report.json http://lr-test-dashboard.herokuapp.com/import/cucumber

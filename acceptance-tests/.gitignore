@@ -1,0 +1,9 @@
+.DS_Store
+Gemfile.lock
+sshot*
+report.json
+tmpimg*
+diff*
+*.iml
+loadingimg*
+performance-*
